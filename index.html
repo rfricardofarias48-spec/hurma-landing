@@ -304,7 +304,7 @@ a.bt:hover{color:var(--ink)}
   .hero .cta-row .btn{display:inline-flex;padding:17px 38px}
   .hero .cta-row .btn-ghost{display:none}
   .hero-shot{margin:44px -20px 0;border-radius:0}
-  .hero-video{aspect-ratio:1280/800;width:100%;height:auto;object-fit:fill}
+  .hero-video{aspect-ratio:750/994;width:100%;height:auto;object-fit:fill;max-height:460px;object-position:top}
 @media(max-width:1080px){
   .steps{grid-template-columns:repeat(2,1fr)}
   .agenda{grid-template-columns:1fr}
@@ -390,7 +390,10 @@ a.bt:hover{color:var(--ink)}
       <a class="btn btn-ghost" href="#como">Ver como funciona</a>
     </div>
     <div class="hero-shot rv">
-      <video class="hero-video" src="assets/hero-demo.mp4" poster="assets/hero-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+      <video class="hero-video" poster="assets/hero-poster.jpg" autoplay muted loop playsinline preload="auto">
+        <source src="assets/hero-demo-mobile.mp4" media="(max-width:720px)" type="video/mp4">
+        <source src="assets/hero-demo.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
