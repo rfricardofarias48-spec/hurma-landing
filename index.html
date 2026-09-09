@@ -295,7 +295,8 @@ a.bt:hover{color:var(--ink)}
 @media(max-width:720px){
   .hero{padding:132px 0 56px;text-align:center}
   .hero-note{display:none}
-  .hero-ic{display:block;margin:0 auto 22px;opacity:.9}
+  .hero-ic{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:0 auto 16px}
+  .hero-ic .hi-dot{width:5px;height:5px;border-radius:50%;background:var(--acid-600);flex:none}
   .hero h1{font-size:clamp(31px,8.7vw,36px);margin-top:0;max-width:none}
   .hero .sub{display:block;font-size:15.5px;margin:16px auto 0;max-width:34ch}
   .hero .cta-row{margin:24px auto 0}
@@ -303,7 +304,7 @@ a.bt:hover{color:var(--ink)}
   .hero .cta-row .btn{display:inline-flex;padding:17px 38px}
   .hero .cta-row .btn-ghost{display:none}
   .hero-shot{margin:44px -20px 0;border-radius:0}
-  .hero-video{min-height:230px;object-fit:cover}
+  .hero-video{aspect-ratio:1280/800;width:100%;height:auto;object-fit:fill}
 @media(max-width:1080px){
   .steps{grid-template-columns:repeat(2,1fr)}
   .agenda{grid-template-columns:1fr}
@@ -381,9 +382,7 @@ a.bt:hover{color:var(--ink)}
 <section class="hero" id="conteudo">
   <div class="wrap">
     <a class="hero-note" href="#preco"><span class="dot" aria-hidden="true"></span>Contrate um assistente de RH por R$ 1.000/mês <span class="arrow">→</span></a>
-    <div class="hero-ic" aria-hidden="true">
-      <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><rect x="1" y="1" width="32" height="32" rx="9" fill="#0d1f17"/><rect x="11" y="11" width="12" height="12" rx="4" fill="#c9f04d"/><circle cx="17" cy="17" r="2.4" fill="#0d1f17"/></svg>
-    </div>
+    <div class="hero-ic" aria-hidden="true"><span class="hi-dot"></span>assistente de RH para a sua empresa</div>
     <h1>O RH da sua empresa,<br><em>finalmente em ordem</em></h1>
     <p class="sub">Folha, ponto, benefícios, admissões, assinaturas e documentos — cuidadas por um assistente de RH de verdade.</p>
     <div class="cta-row">
