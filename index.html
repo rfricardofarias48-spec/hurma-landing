@@ -105,6 +105,7 @@ em{font-style:normal}
 .mmenu .mfoot{font-family:var(--mono);margin-top:28px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
 /* hero */
 .hero{padding:158px 0 96px;text-align:center}
+.hero-ic{display:none}
 .hero h1{font-size:clamp(42px,6.6vw,84px);max-width:20ch;margin:28px auto 0}
 .hero-note{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);transition:color .15s}
 .hero-note .dot{width:6px;height:6px;border-radius:50%;background:var(--acid-600);flex:none}
@@ -141,7 +142,7 @@ em{font-style:normal}
 @media(max-width:640px){.resumo{padding:40px 14px 8px}.rz-box{padding:48px 20px;border-radius:18px}.rz-sub{font-size:15.5px}}
 
 .hero-shot{max-width:1120px;margin:76px auto 0;position:relative;border-radius:26px;overflow:hidden;border:1px solid var(--line2);background:var(--bg2);box-shadow:0 60px 120px -40px rgba(13,31,23,.42),0 24px 48px -28px rgba(13,31,23,.28),0 2px 6px rgba(13,31,23,.06)}
-.hero-shot::before{content:"";position:absolute;inset:0;border-radius:26px;box-shadow:inset 0 1px 0 rgba(255,255,255,.5);pointer-events:none;z-index:1}
+
 .hero-video{width:100%;display:block;background:var(--bg2)}
 .tile{width:52px;height:52px;border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;line-height:1}
 .tile .m{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
@@ -294,7 +295,8 @@ a.bt:hover{color:var(--ink)}
 @media(max-width:720px){
   .hero{padding:132px 0 56px;text-align:center}
   .hero-note{display:none}
-  .hero h1{font-size:clamp(31px,8.7vw,36px);margin-top:20px;max-width:none}
+  .hero-ic{display:block;margin:0 auto 22px;opacity:.9}
+  .hero h1{font-size:clamp(31px,8.7vw,36px);margin-top:0;max-width:none}
   .hero .sub{display:block;font-size:15.5px;margin:16px auto 0;max-width:34ch}
   .hero .cta-row{margin:24px auto 0}
   .hero .cta-row{margin:26px auto 0}
@@ -379,6 +381,9 @@ a.bt:hover{color:var(--ink)}
 <section class="hero" id="conteudo">
   <div class="wrap">
     <a class="hero-note" href="#preco"><span class="dot" aria-hidden="true"></span>Contrate um assistente de RH por R$ 1.000/mês <span class="arrow">→</span></a>
+    <div class="hero-ic" aria-hidden="true">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><rect x="1" y="1" width="32" height="32" rx="9" fill="#0d1f17"/><rect x="11" y="11" width="12" height="12" rx="4" fill="#c9f04d"/><circle cx="17" cy="17" r="2.4" fill="#0d1f17"/></svg>
+    </div>
     <h1>O RH da sua empresa,<br><em>finalmente em ordem</em></h1>
     <p class="sub">Folha, ponto, benefícios, admissões, assinaturas e documentos — cuidadas por um assistente de RH de verdade.</p>
     <div class="cta-row">
