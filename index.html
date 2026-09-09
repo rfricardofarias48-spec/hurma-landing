@@ -332,8 +332,17 @@ a.bt:hover{color:var(--ink)}
 }
 @media(max-width:820px){
   .price-grid{grid-template-columns:1fr}
-  .plans{overflow-x:auto}
-  .plans table{min-width:520px}
+  .plans{overflow:visible;border-radius:20px}
+  .plans table{min-width:0;display:block}
+  .plans thead{display:none}
+  .plans tbody{display:block}
+  .plans tr{display:block;border-bottom:1px solid var(--line);padding:20px 22px}
+  .plans tr:last-child{border-bottom:0}
+  .plans td{display:block;border:0;padding:3px 0}
+  .plans td.pn{padding-bottom:8px}
+  .plans td[data-l]::before{content:attr(data-l);display:block;font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mut2);margin-bottom:2px}
+  .plans td.ppreco{padding:6px 0}
+  .plans .ppreco{font-size:17px}
 }
 @media(max-width:720px){
   .wrap{padding-left:24px;padding-right:24px}
@@ -472,21 +481,21 @@ a.bt:hover{color:var(--ink)}
         <tbody>
           <tr>
             <td class="pn">Essencial</td>
-            <td class="pfaixa">Até 30 funcionários</td>
-            <td class="ppreco">R$ 1.000/mês</td>
-            <td class="ppor">~R$ 33 por funcionário</td>
+            <td class="pfaixa" data-l="Faixa">Até 30 funcionários</td>
+            <td class="ppreco" data-l="Preço">R$ 1.000/mês</td>
+            <td class="ppor" data-l="Por funcionário">~R$ 33</td>
           </tr>
           <tr class="recom">
             <td class="pn">Profissional<span class="ptag2">recomendado</span></td>
-            <td class="pfaixa">Até 50 funcionários</td>
-            <td class="ppreco">R$ 1.450/mês</td>
-            <td class="ppor">~R$ 29 por funcionário</td>
+            <td class="pfaixa" data-l="Faixa">Até 50 funcionários</td>
+            <td class="ppreco" data-l="Preço">R$ 1.450/mês</td>
+            <td class="ppor" data-l="Por funcionário">~R$ 29</td>
           </tr>
           <tr>
             <td class="pn">Enterprise</td>
-            <td class="pfaixa">Acima de 50 funcionários</td>
-            <td class="ppreco sob">Sob consulta</td>
-            <td class="ppor">—</td>
+            <td class="pfaixa" data-l="Faixa">Acima de 50 funcionários</td>
+            <td class="ppreco sob" data-l="Preço">Sob consulta</td>
+            <td class="ppor" data-l="Por funcionário">sob consulta</td>
           </tr>
         </tbody>
       </table>
