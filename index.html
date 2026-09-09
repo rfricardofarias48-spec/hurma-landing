@@ -310,6 +310,18 @@ a.bt:hover{color:var(--ink)}
 .bl-legal{display:flex;gap:18px;align-items:center}
 .bt-link{background:none;border:0;cursor:pointer;padding:0;font:inherit}
 .bt-link:hover{color:var(--ink)}
+/* modais legais (privacidade/termos) */
+.modal{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:24px}
+.modal.open{display:flex}
+.modal .mbk{position:absolute;inset:0;background:rgba(13,31,23,.55);backdrop-filter:blur(3px)}
+.modal .mbox{position:relative;z-index:1;background:var(--card);border:1px solid var(--line2);border-radius:20px;max-width:640px;width:100%;max-height:80vh;overflow-y:auto;padding:34px 34px 28px;box-shadow:0 40px 90px -30px rgba(13,31,23,.5)}
+.modal .mbox h3{font-size:24px;margin-bottom:14px}
+.modal .mbox h4{font-size:15px;margin:18px 0 6px}
+.modal .mbox p,.modal .mbox li{font-size:14px;color:var(--mut);line-height:1.7}
+.modal .mbox ul{padding-left:18px;margin:8px 0}
+.modal .mclose{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:16px;font-weight:700;color:var(--mut);transition:.2s}
+.modal .mclose:hover{color:var(--ink);border-color:var(--mut)}
+
 /* banner de cookies (LGPD) */
 .ckbar{position:fixed;left:16px;right:16px;bottom:16px;z-index:90;display:none;justify-content:center;pointer-events:none}
 .ckbar.show{display:flex}
@@ -415,8 +427,9 @@ a.bt:hover{color:var(--ink)}
   <a href="#cuida"><span class="rn">03</span>O que cuida</a>
   <a href="#transparencia"><span class="rn">04</span>Transparência</a>
   <a href="#integracoes"><span class="rn">05</span>Integrações</a>
-  <a href="#faq"><span class="rn">06</span>Dúvidas</a>
-  <a href="#contratar"><span class="rn">07</span>Contratar</a>
+  <a href="#planos"><span class="rn">06</span>Planos</a>
+  <a href="#faq"><span class="rn">07</span>Dúvidas</a>
+  <a href="#contratar"><span class="rn">08</span>Contratar</a>
 </nav>
 
 <main id="top" class="frame">
@@ -628,7 +641,7 @@ a.bt:hover{color:var(--ink)}
 <section class="sec" id="planos">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="kicker">Planos</span>
+      <span class="kicker">#06 – Planos</span>
       <h2>Escolha pelo tamanho <em style="color:var(--forest-600)">do seu time</em></h2>
       <p>Os planos só mudam a quantidade de funcionários — o serviço é completo em todos: folha, ponto, benefícios, admissões, assinaturas, reunião mensal e painel em tempo real.</p>
     </div>
@@ -677,7 +690,7 @@ a.bt:hover{color:var(--ink)}
 <section class="sec" id="faq">
   <div class="wrap">
     <div class="sec-head rv" style="text-align:center;margin-left:auto;margin-right:auto">
-      <span class="kicker" style="justify-content:center">#06 – Dúvidas</span>
+      <span class="kicker" style="justify-content:center">#07 – Dúvidas</span>
       <h2>Perguntas diretas, <em style="color:var(--forest-600)">respostas diretas</em></h2>
     </div>
     <div class="faq rv">
@@ -732,7 +745,7 @@ a.bt:hover{color:var(--ink)}
         <a href="#faq">Dúvidas</a>
       </nav>
     </div>
-    <div class="bottom"><span class="bt">© 2026 Hurma</span><a class="bt" href="mailto:contato@assistenterh.com.br">contato@assistenterh.com.br</a><div class="bl-legal"><a class="bt" href="privacidade.html">Privacidade</a><a class="bt" href="termos.html">Termos</a><button class="bt bt-link" id="cookiePrefs" type="button">Cookies</button></div></div>
+    <div class="bottom"><span class="bt">© 2026 Hurma</span><a class="bt" href="mailto:contato@assistenterh.com.br">contato@assistenterh.com.br</a><div class="bl-legal"><button class="bt bt-link" data-modal="mPrivacidade" type="button">Privacidade</button><button class="bt bt-link" data-modal="mTermos" type="button">Termos</button><button class="bt bt-link" id="cookiePrefs" type="button">Cookies</button></div></div>
   </div>
 </footer>
 </main>
@@ -834,6 +847,53 @@ if(!localStorage.getItem(CK_KEY))ckbar.classList.add('show');
 document.getElementById('ckAccept').addEventListener('click',()=>ckShow('all'));
 document.getElementById('ckReject').addEventListener('click',()=>ckShow('essential'));
 document.getElementById('cookiePrefs').addEventListener('click',()=>ckbar.classList.add('show'));
+</script>
+<div class="modal" id="mPrivacidade" role="dialog" aria-modal="true" aria-label="Política de Privacidade">
+  <div class="mbk" data-close></div>
+  <div class="mbox">
+    <button class="mclose" data-close aria-label="Fechar">✕</button>
+    <h3>Política de Privacidade</h3>
+    <p>A Hurma trata os dados da sua empresa com o mesmo cuidado que trata a folha dela: só o essencial, sempre protegido.</p>
+    <h4>Quais dados tratamos</h4>
+    <ul>
+      <li>Dados de contato que você informa ao contratar (nome, e-mail, WhatsApp, CNPJ).</li>
+      <li>Dados de RH necessários ao serviço: funcionários, jornadas, salários, benefícios e documentos.</li>
+    </ul>
+    <h4>Como usamos</h4>
+    <ul>
+      <li>Para executar o serviço de assistente de RH: folha, ponto, benefícios, admissões, assinaturas e prestação de contas.</li>
+      <li>Para comunicação direta com você, sobre o seu RH. Nunca revendemos nem compartilhamos dados com terceiros para marketing.</li>
+    </ul>
+    <h4>Seus direitos (LGPD)</h4>
+    <p>Você pode acessar, corrigir ou pedir a exclusão dos seus dados a qualquer momento, escrevendo para contato@assistenterh.com.br. Cada empresa tem ambiente isolado — seus dados só são visíveis para você e para o seu assistente.</p>
+  </div>
+</div>
+
+<div class="modal" id="mTermos" role="dialog" aria-modal="true" aria-label="Termos de Uso">
+  <div class="mbk" data-close></div>
+  <div class="mbox">
+    <button class="mclose" data-close aria-label="Fechar">✕</button>
+    <h3>Termos de Uso</h3>
+    <p>O Hurma é um serviço de assistente de RH prestado por assinatura mensal, por empresa, conforme o plano escolhido.</p>
+    <h4>Do serviço</h4>
+    <ul>
+      <li>Folha, ponto, benefícios, admissões, assinaturas e documentos executados por um assistente de RH, com cronograma e prazos combinados com você.</li>
+      <li>O painel é incluído para acompanhamento em tempo real e não requer operação pelo cliente.</li>
+    </ul>
+    <h4>Da assinatura</h4>
+    <ul>
+      <li>Mensalidade conforme o plano e o número de funcionários; reajustes são comunicados com antecedência.</li>
+      <li>Cancele quando quiser. O histórico do seu RH é entregue a você no encerramento.</li>
+    </ul>
+    <h4>Responsabilidades</h4>
+    <p>As informações enviadas pela empresa precisam ser verdadeiras e autorizadas. Prazos dependem das informações e documentos fornecidos em tempo hábil. Dúvidas: contato@assistenterh.com.br.</p>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('[data-modal]').forEach(b=>b.addEventListener('click',()=>{const m=document.getElementById(b.dataset.modal); if(m) m.classList.add('open');}));
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target.closest('[data-close]')) m.classList.remove('open');}));
+addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'));});
 </script>
 </body>
 </html>
