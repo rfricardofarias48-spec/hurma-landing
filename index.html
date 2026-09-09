@@ -148,19 +148,27 @@ em{font-style:normal}
 .tile .m{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
 .tile .d{font-size:20px;font-weight:800;letter-spacing:-.03em;margin-top:2px}
 /* price comparison */
-.plans{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden}
-.plans table{width:100%;border-collapse:collapse;font-size:14.5px}
-.plans th{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);text-align:left;padding:16px 22px;border-bottom:1px solid var(--line);background:var(--bg2)}
-.plans td{padding:18px 22px;border-bottom:1px solid var(--line);vertical-align:middle}
-.plans tr:last-child td{border-bottom:0}
-.plans tr:hover td{background:#fafcf9}
-.plans .pn{font-weight:700;letter-spacing:-.01em}
-.plans .pfaixa{color:var(--mut)}
-.plans .ppreco{font-family:var(--mono);font-weight:600;white-space:nowrap}
-.plans .ppor{color:var(--mut);font-size:13px}
-.plans tr.recom{background:#fbfdf5}
-.plans tr.recom td:first-child{position:relative}
-.plans .ptag2{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5a721c;background:#eef6dc;border:1px solid #dcebb0;border-radius:999px;padding:3px 9px;margin-left:10px;vertical-align:middle}
+.plans{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+.plancard{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 26px 22px;transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s,border-color .22s}
+.plancard:hover{transform:translateY(-3px);box-shadow:0 18px 40px -16px rgba(13,31,23,.16);border-color:var(--line2)}
+.pc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.pc-head h3{font-size:19px}
+.pc-radio{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line2);background:#fff}
+.pc-check{width:26px;height:26px;border-radius:50%;background:var(--forest);color:var(--acid);display:grid;place-items:center}
+.pc-price{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px}
+.pc-price b{font-family:var(--serif);font-weight:500;font-size:clamp(30px,2.6vw,38px);letter-spacing:-.02em;line-height:1}
+.pc-price span{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mut2);line-height:1.4;padding-top:2px}
+.pc-sub{font-size:13px;color:var(--mut);border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:16px}
+.pc-list{list-style:none;display:grid;gap:11px;font-size:13.5px;color:var(--ink3);margin-bottom:24px}
+.pc-list li{display:flex;gap:10px;align-items:flex-start}
+.pc-list li::before{content:"";width:6px;height:6px;border-radius:50%;border:1.5px solid var(--forest-600);flex:none;margin-top:7px}
+.plancard.rec .pc-list li::before{content:"+";border:0;color:var(--forest-600);font-weight:800;font-size:15px;line-height:1;margin-top:1px}
+.plancard.rec{border-color:var(--forest-600);box-shadow:0 18px 40px -18px rgba(13,31,23,.2)}
+.pc-pill{position:absolute;top:-12px;right:22px;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--forest);color:#fff;border-radius:999px;padding:5px 12px}
+.pc-btn{margin-top:auto;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mut2);background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:15px 18px;transition:all .18s ease}
+.pc-btn:hover{color:var(--ink);border-color:var(--forest-600)}
+.pc-btn.hot{background:var(--forest);color:var(--acid);border-color:var(--forest)}
+.pc-btn.hot:hover{background:var(--forest-800);transform:translateY(-1px)}
 .plans .sob{color:var(--mut2);font-style:italic}
 
 /* price comparison */
@@ -303,6 +311,22 @@ em{font-style:normal}
 .bottom{border-top:1px solid var(--line);padding:20px 56px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .bt{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut2)}
 a.bt:hover{color:var(--ink)}
+.bl-legal{display:flex;gap:18px;align-items:center}
+.bt-link{background:none;border:0;cursor:pointer;padding:0;font:inherit}
+.bt-link:hover{color:var(--ink)}
+/* banner de cookies (LGPD) */
+.ckbar{position:fixed;left:16px;right:16px;bottom:16px;z-index:90;display:none;justify-content:center;pointer-events:none}
+.ckbar.show{display:flex}
+.ck-in{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;max-width:860px;background:var(--forest);color:#fff;border:1px solid var(--forest-800);border-radius:20px;padding:20px 24px;box-shadow:0 32px 64px -24px rgba(13,31,23,.55);animation:ckin .45s cubic-bezier(.22,1,.36,1)}
+@keyframes ckin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.ck-txt{font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.78);max-width:56ch}
+.ck-txt b{display:block;color:#fff;font-size:14.5px;margin-bottom:2px}
+.ck-txt a{color:var(--acid);text-decoration:underline;text-underline-offset:3px}
+.ck-actions{display:flex;gap:10px;flex-shrink:0}
+.ckbar .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+.ckbar .btn-ghost:hover{border-color:var(--acid);color:var(--acid)}
+@media (prefers-reduced-motion:reduce){.ck-in{animation:none}}
+@media(max-width:640px){.ck-in{flex-direction:column;align-items:stretch;text-align:left}.ck-actions{justify-content:flex-end}}
 /* reveal */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
@@ -332,17 +356,9 @@ a.bt:hover{color:var(--ink)}
 }
 @media(max-width:820px){
   .price-grid{grid-template-columns:1fr}
-  .plans{overflow:visible;border-radius:20px}
-  .plans table{min-width:0;display:block}
-  .plans thead{display:none}
-  .plans tbody{display:block}
-  .plans tr{display:block;border-bottom:1px solid var(--line);padding:20px 22px}
-  .plans tr:last-child{border-bottom:0}
-  .plans td{display:block;border:0;padding:3px 0}
-  .plans td.pn{padding-bottom:8px}
-  .plans td[data-l]::before{content:attr(data-l);display:block;font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mut2);margin-bottom:2px}
-  .plans td.ppreco{padding:6px 0}
-  .plans .ppreco{font-size:17px}
+  .plans{grid-template-columns:1fr}
+  .plancard{padding:24px 22px 20px}
+  .pc-btn{width:100%}
 }
 @media(max-width:720px){
   .wrap{padding-left:24px;padding-right:24px}
@@ -377,6 +393,7 @@ a.bt:hover{color:var(--ink)}
       <a href="#como">Como funciona</a>
       <a href="#cuida">O que cuida</a>
       <a href="#integracoes">Integrações</a>
+      <a href="#planos">Planos</a>
       <a href="#faq">Dúvidas</a>
     </nav>
     <div class="nav-cta">
@@ -390,6 +407,7 @@ a.bt:hover{color:var(--ink)}
   <a href="#como">Como funciona</a>
   <a href="#cuida">O que cuida</a>
   <a href="#integracoes">Integrações</a>
+  <a href="#planos">Planos</a>
   <a href="#faq">Dúvidas</a>
   <a href="mailto:contato@assistenterh.com.br?subject=Quero%20contratar%20um%20assistente%20de%20RH" style="color:var(--forest-600);border-bottom:none">Contratar agora</a>
   <p class="mfoot">contato@assistenterh.com.br</p>
@@ -472,33 +490,6 @@ a.bt:hover{color:var(--ink)}
           <li>Reunião mensal de prestação de conta com humano.</li>
         </ul>
       </div>
-    </div>
-    <div class="plans rv">
-      <table>
-        <thead>
-          <tr><th>Plano</th><th>Faixa</th><th>Preço</th><th>Por funcionário</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="pn">Essencial</td>
-            <td class="pfaixa" data-l="Faixa">Até 30 funcionários</td>
-            <td class="ppreco" data-l="Preço">R$ 1.000/mês</td>
-            <td class="ppor" data-l="Por funcionário">~R$ 33</td>
-          </tr>
-          <tr class="recom">
-            <td class="pn">Profissional<span class="ptag2">recomendado</span></td>
-            <td class="pfaixa" data-l="Faixa">Até 50 funcionários</td>
-            <td class="ppreco" data-l="Preço">R$ 1.450/mês</td>
-            <td class="ppor" data-l="Por funcionário">~R$ 29</td>
-          </tr>
-          <tr>
-            <td class="pn">Enterprise</td>
-            <td class="pfaixa" data-l="Faixa">Acima de 50 funcionários</td>
-            <td class="ppreco sob" data-l="Preço">Sob consulta</td>
-            <td class="ppor" data-l="Por funcionário">sob consulta</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
     <div class="why rv">
       <div>
@@ -638,6 +629,55 @@ a.bt:hover{color:var(--ink)}
   </div>
 </section>
 
+<section class="sec" id="planos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">Planos</span>
+      <h2>Escolha pelo tamanho <em style="color:var(--forest-600)">do seu time</em></h2>
+      <p>Os planos só mudam a quantidade de funcionários — o serviço é completo em todos: folha, ponto, benefícios, admissões, assinaturas, reunião mensal e painel em tempo real.</p>
+    </div>
+    <div class="plans rv">
+      <div class="plancard">
+        <div class="pc-head"><h3>Essencial</h3><span class="pc-radio" aria-hidden="true"></span></div>
+        <div class="pc-price"><b>R$ 1.000</b><span>BRL<br>/mês</span></div>
+        <p class="pc-sub">Até 30 funcionários · ~R$ 33 por funcionário</p>
+        <ul class="pc-list">
+          <li>Folha, ponto, benefícios e admissões</li>
+          <li>Assinaturas e documentos cobrados até a última pendência</li>
+          <li>Reunião mensal de prestação de contas</li>
+          <li>Painel do cliente atualizando a cada minuto</li>
+        </ul>
+        <a class="pc-btn" href="mailto:contato@assistenterh.com.br?subject=Plano%20Essencial">Selecione o plano</a>
+      </div>
+      <div class="plancard">
+        <div class="pc-head"><h3>Profissional</h3><span class="pc-radio" aria-hidden="true"></span></div>
+        <div class="pc-price"><b>R$ 1.450</b><span>BRL<br>/mês</span></div>
+        <p class="pc-sub">Até 50 funcionários · ~R$ 29 por funcionário</p>
+        <ul class="pc-list">
+          <li><b>Tudo do Essencial</b></li>
+          <li>Custo por funcionário menor conforme o time cresce</li>
+          <li>Prioridade no atendimento do seu assistente</li>
+          <li>Relatórios do mês comparados com o anterior</li>
+        </ul>
+        <a class="pc-btn" href="mailto:contato@assistenterh.com.br?subject=Plano%20Profissional">Selecione o plano</a>
+      </div>
+      <div class="plancard rec">
+        <span class="pc-pill">melhor plano</span>
+        <div class="pc-head"><h3>Enterprise</h3><span class="pc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <div class="pc-price"><b>Sob consulta</b></div>
+        <p class="pc-sub">Acima de 50 funcionários · a partir de ~R$ 25 por funcionário</p>
+        <ul class="pc-list">
+          <li><b>Tudo do Profissional</b></li>
+          <li>Escala do atendimento conforme o tamanho da operação</li>
+          <li>Rotinas de RH personalizadas com você</li>
+          <li>Onboarding completo do seu time no painel</li>
+        </ul>
+        <a class="pc-btn hot" href="mailto:contato@assistenterh.com.br?subject=Plano%20Enterprise">Falar com a gente</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="faq">
   <div class="wrap">
     <div class="sec-head rv" style="text-align:center;margin-left:auto;margin-right:auto">
@@ -692,13 +732,29 @@ a.bt:hover{color:var(--ink)}
         <a href="#como">Como funciona</a>
         <a href="#cuida">O que cuida</a>
         <a href="#integracoes">Integrações</a>
+        <a href="#planos">Planos</a>
         <a href="#faq">Dúvidas</a>
       </nav>
     </div>
-    <div class="bottom"><span class="bt">© 2026 Hurma</span><a class="bt" href="mailto:contato@assistenterh.com.br">contato@assistenterh.com.br</a></div>
+    <div class="bottom"><span class="bt">© 2026 Hurma</span><a class="bt" href="mailto:contato@assistenterh.com.br">contato@assistenterh.com.br</a><div class="bl-legal"><a class="bt" href="privacidade.html">Privacidade</a><a class="bt" href="termos.html">Termos</a><button class="bt bt-link" id="cookiePrefs" type="button">Cookies</button></div></div>
   </div>
 </footer>
 </main>
+
+<!-- Banner de consentimento de cookies (LGPD) -->
+<div class="ckbar" id="ckbar" role="dialog" aria-live="polite" aria-label="Consentimento de cookies">
+  <div class="ck-in">
+    <div class="ck-txt">
+      <b>Usamos cookies — poucos e honestos.</b>
+      Essenciais mantêm o site funcionando. Os opcionais nos ajudam a entender o uso (análise agregada, sem publicidade). Você escolhe.
+      <a href="cookies.html">Política de Cookies</a>
+    </div>
+    <div class="ck-actions">
+      <button class="btn btn-ghost btn-sm" id="ckReject" type="button">Só essenciais</button>
+      <button class="btn btn-acid btn-sm" id="ckAccept" type="button">Aceitar todos</button>
+    </div>
+  </div>
+</div>
 
 <script>
 const nav=document.getElementById('nav');
@@ -774,6 +830,14 @@ if(AG.adm&&agPanel){
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 document.querySelectorAll('.faq details').forEach(d=>d.addEventListener('toggle',()=>{if(d.open)document.querySelectorAll('.faq details').forEach(o=>{if(o!==d)o.open=false;});}));
+// ---------- cookies (LGPD): banner + reabertura pelo rodapé ----------
+const CK_KEY='hurma-cookie-consent';
+const ckbar=document.getElementById('ckbar');
+const ckShow=v=>{localStorage.setItem(CK_KEY,v);ckbar.classList.remove('show');};
+if(!localStorage.getItem(CK_KEY))ckbar.classList.add('show');
+document.getElementById('ckAccept').addEventListener('click',()=>ckShow('all'));
+document.getElementById('ckReject').addEventListener('click',()=>ckShow('essential'));
+document.getElementById('cookiePrefs').addEventListener('click',()=>ckbar.classList.add('show'));
 </script>
 </body>
 </html>
