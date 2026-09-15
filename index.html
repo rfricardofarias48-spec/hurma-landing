@@ -348,6 +348,18 @@ a.bt:hover{color:var(--ink)}
 .lg code{font-family:var(--mono);font-size:12.5px;background:var(--acid-soft);border-radius:4px;padding:1px 6px}
 .lbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:16px 0}
 .lbox p{margin:0;font-size:14px}
+/* modais legais (privacidade/termos) */
+.modal{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:24px}
+.modal.open{display:flex}
+.modal .mbk{position:absolute;inset:0;background:rgba(13,31,23,.55);backdrop-filter:blur(3px)}
+.modal .mbox{position:relative;z-index:1;background:var(--card);border:1px solid var(--line2);border-radius:20px;max-width:680px;width:100%;max-height:82vh;overflow-y:auto;padding:34px 34px 28px;box-shadow:0 40px 90px -30px rgba(13,31,23,.5)}
+.modal .mbox .lg{max-width:none}
+.modal .mbox .lg h2{font-size:clamp(26px,3vw,32px);margin:10px 0 6px}
+.modal .mbox .lg h3{margin-top:26px}
+.modal .lbox{background:var(--bg2)}
+.modal .mclose{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:16px;font-weight:700;color:var(--mut);transition:.2s;z-index:2}
+.modal .mclose:hover{color:var(--ink);border-color:var(--mut)}
+@media(max-width:640px){.modal{padding:12px}.modal .mbox{padding:28px 22px 22px}}
 /* reveal */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
@@ -752,8 +764,12 @@ a.bt:hover{color:var(--ink)}
 <!-- ===== Políticas (LGPD) — embutidas para funcionar em qualquer hospedagem ===== -->
 <div class="legalwrap">
 
-<section class="sec" id="privacidade">
-  <div class="wrap frame"><div class="lg">
+<!-- ===== Modais legais (privacidade / termos) ===== -->
+<div class="modal" id="mPrivacidade" role="dialog" aria-modal="true" aria-label="Política de Privacidade">
+  <div class="mbk" data-close></div>
+  <div class="mbox">
+    <button class="mclose" data-close aria-label="Fechar">✕</button>
+    <div class="lg">
     <span class="kicker">LGPD · Lei 13.709/2018</span>
     <h2>Política de <em>Privacidade</em></h2>
     <p class="upd">Atualizada em 9 de setembro de 2026</p>
@@ -795,10 +811,13 @@ a.bt:hover{color:var(--ink)}
     <h3>9. Alterações desta política</h3>
     <p>Podemos atualizar esta política para refletir melhorias no serviço ou mudanças legais. A data de atualização fica sempre no topo da seção e, em caso de mudança relevante, avisamos os clientes com antecedência.</p>
   </div></div>
-</section>
+</div>
 
-<section class="sec" id="termos">
-  <div class="wrap frame"><div class="lg">
+<div class="modal" id="mTermos" role="dialog" aria-modal="true" aria-label="Termos de Uso">
+  <div class="mbk" data-close></div>
+  <div class="mbox">
+    <button class="mclose" data-close aria-label="Fechar">✕</button>
+    <div class="lg">
     <span class="kicker">Contrato de uso da plataforma</span>
     <h2>Termos de <em>Uso</em></h2>
     <p class="upd">Atualizados em 9 de setembro de 2026</p>
@@ -823,7 +842,7 @@ a.bt:hover{color:var(--ink)}
     <h3>4. Integrações de terceiros</h3>
     <p>A Hurma integra-se a serviços escolhidos pelo Cliente — ZapSign (assinatura eletrônica), iFood Benefícios e sistemas de ponto digital. A disponibilidade, os custos e as regras desses serviços são dos respectivos provedores; a Hurma não se responsabiliza por interrupções que não estejam sob seu controle, mas se esforça para sinalizar falhas na plataforma.</p>
     <h3>5. Proteção de dados</h3>
-    <p>O tratamento de dados pessoais pela Hurma segue a <a href="#privacidade" style="color:var(--forest-600);text-decoration:underline">Política de Privacidade</a>. O Cliente é o controlador dos dados dos seus funcionários e candidatos; a Hurma atua como operadora, tratando dados somente conforme suas instruções e para prestar o serviço.</p>
+    <p>O tratamento de dados pessoais pela Hurma segue a <a href="#privacidade" data-modal="mPrivacidade" style="color:var(--forest-600);text-decoration:underline">Política de Privacidade</a>. O Cliente é o controlador dos dados dos seus funcionários e candidatos; a Hurma atua como operadora, tratando dados somente conforme suas instruções e para prestar o serviço.</p>
     <h3>6. Propriedade</h3>
     <p>Os dados inseridos pertencem ao Cliente, que pode exportá-los (planilhas, PDFs) a qualquer momento. A plataforma, sua marca e seu código são da Hurma.</p>
     <h3>7. Disponibilidade e suporte</h3>
@@ -836,7 +855,7 @@ a.bt:hover{color:var(--ink)}
     <h3>10. Foro e legislação</h3>
     <p>Aplica-se a legislação brasileira. Fica eleito o foro do domicílio do Cliente para dirimir eventuais conflitos.</p>
   </div></div>
-</section>
+</div>
 
 <section class="sec" id="cookies">
   <div class="wrap frame"><div class="lg">
@@ -887,7 +906,7 @@ a.bt:hover{color:var(--ink)}
         <a href="#faq">Dúvidas</a>
       </nav>
     </div>
-    <div class="bottom"><span class="bt">© 2026 Hurma</span><a class="bt" href="mailto:contato@assistenterh.com.br">contato@assistenterh.com.br</a><div class="bl-legal"><a class="bt" href="#privacidade">Privacidade</a><a class="bt" href="#termos">Termos</a><button class="bt bt-link" id="cookiePrefs" type="button">Cookies</button></div></div>
+    <div class="bottom"><span class="bt">© 2026 Hurma</span><a class="bt" href="mailto:contato@assistenterh.com.br">contato@assistenterh.com.br</a><div class="bl-legal"><button class="bt bt-link" data-modal="mPrivacidade" type="button">Privacidade</button><button class="bt bt-link" data-modal="mTermos" type="button">Termos</button><button class="bt bt-link" id="cookiePrefs" type="button">Cookies</button></div></div>
   </div>
 </footer>
 </main>
@@ -989,6 +1008,12 @@ if(!localStorage.getItem(CK_KEY))ckbar.classList.add('show');
 document.getElementById('ckAccept').addEventListener('click',()=>ckShow('all'));
 document.getElementById('ckReject').addEventListener('click',()=>ckShow('essential'));
 document.getElementById('cookiePrefs').addEventListener('click',()=>ckbar.classList.add('show'));
+// ---------- modais legais (privacidade/termos) ----------
+document.querySelectorAll('[data-modal]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();document.querySelectorAll('.modal.open').forEach(x=>x.classList.remove('open'));const m=document.getElementById(b.dataset.modal);if(m){m.classList.add('open');m.querySelector('.mbox').scrollTop=0;}}));
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target.closest('[data-close]'))m.classList.remove('open');}));
+addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'));});
+// links âncora dentro de um modal: fecha o modal antes de rolar até a seção
+document.querySelectorAll('.modal a[href^="#"]:not([data-modal])').forEach(a=>a.addEventListener('click',()=>document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'))));
 </script>
 </body>
 </html>
