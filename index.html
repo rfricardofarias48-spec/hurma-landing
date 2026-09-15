@@ -180,7 +180,6 @@ em{font-style:normal}
 .calc-out{display:flex;align-items:baseline;gap:8px;margin:22px 0 4px}
 .calc-val{font-family:var(--serif);font-weight:500;font-size:clamp(40px,4.5vw,58px);letter-spacing:-.03em;color:var(--ink)}
 .calc-per{color:var(--mut);font-weight:600;font-size:16px}
-.calc-formula{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--mut2);margin-bottom:22px}
 .calc-r{border-left:1px solid var(--line);padding-left:40px}
 .calc-list{list-style:none;margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;font-size:14.5px;color:var(--ink3)}
 .calc-list li{display:flex;gap:10px;align-items:flex-start}
@@ -674,7 +673,6 @@ a.bt:hover{color:var(--ink)}
           <button type="button" id="calcPlus" aria-label="Aumentar">+</button>
         </div>
         <div class="calc-out"><span class="calc-val" id="calcVal">R$ 900</span><span class="calc-per">/mês</span></div>
-        <p class="calc-formula" id="calcFormula">R$ 45 × 20 funcionários</p>
         <a class="btn btn-acid" id="calcCta" href="mailto:contato@assistenterh.com.br?subject=Quero%20colocar%20meu%20DP%20em%20dia%20(time%20de%2020)">Quero colocar meu DP em dia</a>
       </div>
       <div class="calc-r">
@@ -970,12 +968,11 @@ document.getElementById('ckAccept').addEventListener('click',()=>{localStorage.s
 // ---------- calculadora de preço (R$ 45 x funcionários ativos) ----------
 (function(){
   const PRECO=45;
-  const n=document.getElementById('calcN'),out=document.getElementById('calcVal'),f=document.getElementById('calcFormula'),cta=document.getElementById('calcCta');
+  const n=document.getElementById('calcN'),out=document.getElementById('calcVal'),cta=document.getElementById('calcCta');
   const fmt=v=>'R$ '+v.toLocaleString('pt-BR');
   function upd(){
     let v=parseInt(n.value,10);if(isNaN(v)||v<1)v=1;if(v>9999)v=9999;n.value=v;
     out.textContent=fmt(v*PRECO);
-    f.textContent=fmt(PRECO)+' × '+v+(v===1?' funcionário':' funcionários');
     cta.href='mailto:contato@assistenterh.com.br?subject='+encodeURIComponent('Quero colocar meu DP em dia (time de '+v+')');
   }
   document.getElementById('calcMinus').addEventListener('click',()=>{n.value=Math.max(1,(parseInt(n.value,10)||1)-1);upd();});
