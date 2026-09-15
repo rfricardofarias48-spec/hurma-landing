@@ -149,30 +149,25 @@ em{font-style:normal}
 .tile .m{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
 .tile .d{font-size:20px;font-weight:800;letter-spacing:-.03em;margin-top:2px}
 /* price comparison */
-.plans{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
-.plancard{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 26px 22px;transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s,border-color .22s}
-.plancard:hover{transform:translateY(-3px);box-shadow:0 18px 40px -16px rgba(13,31,23,.16);border-color:var(--line2)}
-.pc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.pc-head h3{font-size:19px}
-.pc-radio{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line2);background:#fff}
-.pc-check{width:26px;height:26px;border-radius:50%;background:var(--forest);color:var(--acid);display:grid;place-items:center}
-.pc-price{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px}
-.pc-price b{font-family:var(--serif);font-weight:500;font-size:clamp(30px,2.6vw,38px);letter-spacing:-.02em;line-height:1}
-.pc-price span{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mut2);line-height:1.4;padding-top:2px}
-.pc-sub{font-size:13px;color:var(--mut);border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:16px}
-.pc-list{list-style:none;display:grid;gap:11px;font-size:13.5px;color:var(--ink3);margin-bottom:24px}
-.pc-list li{display:flex;gap:10px;align-items:flex-start}
-.pc-list li::before{content:"";width:6px;height:6px;border-radius:50%;border:1.5px solid var(--forest-600);flex:none;margin-top:7px}
-.plancard.rec .pc-list li::before{content:"+";border:0;color:var(--forest-600);font-weight:800;font-size:15px;line-height:1;margin-top:1px}
-.plancard.rec{border-color:var(--forest-600);box-shadow:0 18px 40px -18px rgba(13,31,23,.2)}
-.pc-pill{position:absolute;top:-12px;right:22px;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--forest);color:#fff;border-radius:999px;padding:5px 12px}
-.pc-btn{margin-top:auto;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mut2);background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:15px 18px;transition:all .18s ease}
-.pc-btn:hover{color:var(--ink);border-color:var(--forest-600)}
-.pc-btn.hot{background:var(--forest);color:var(--acid);border-color:var(--forest)}
-.pc-btn.hot:hover{background:var(--forest-800);transform:translateY(-1px)}
-.plans .sob{color:var(--mut2);font-style:italic}
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:36px;position:relative;display:flex;flex-direction:column}
+.pcard.hot{background:var(--forest);color:#fff;border-color:var(--forest)}
+.pcard .plabel{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.pcard.hot .plabel{color:var(--acid)}
+.pprice{display:flex;align-items:baseline;gap:8px;margin:16px 0 6px}
+.pprice .val{font-family:var(--serif);font-weight:500;font-size:clamp(42px,4.5vw,62px);letter-spacing:-.03em}
+.pprice .per{color:var(--mut);font-weight:600;font-size:16px}
+.pcard.hot .pprice .per{color:rgba(255,255,255,.6)}
+.psub{font-size:15px;color:var(--mut)}
+.pcard.hot .psub{color:rgba(255,255,255,.72)}
+.plist{list-style:none;margin-top:24px;display:grid;gap:12px;font-size:15px;color:var(--mut)}
+.pcard.hot .plist{color:rgba(255,255,255,.85)}
+.plist li{display:flex;gap:12px;align-items:flex-start}
+.plist li::before{content:"—";font-weight:700;color:#b7c2b9;flex-shrink:0}
+.pcard.hot .plist li::before{content:"✓";color:var(--acid);font-weight:800}
+.ptag{position:absolute;top:22px;right:22px;background:var(--acid);color:var(--ink);font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:7px 13px}
+.sob{color:var(--mut2);font-style:italic}
 
-/* price comparison */
 /* caixa única: calculadora + serviços inclusos */
 .calc{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
 .calc-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--forest-600);font-weight:600}
@@ -389,9 +384,7 @@ a.bt:hover{color:var(--ink)}
 @media(max-width:820px){
   .calc{grid-template-columns:1fr;padding:28px;gap:28px}
   .calc-r{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:28px}
-  .plans{grid-template-columns:1fr}
-  .plancard{padding:24px 22px 20px}
-  .pc-btn{width:100%}
+  .price-grid{grid-template-columns:1fr}
 }
 @media(max-width:720px){
   .wrap{padding-left:24px;padding-right:24px}
@@ -405,6 +398,9 @@ a.bt:hover{color:var(--ink)}
   .transp{padding:32px}
   .cta-final{padding:56px 24px}
   .why{padding:44px 24px 38px}
+  .pprice{flex-wrap:wrap}
+  .pprice .val{white-space:nowrap;font-size:38px}
+  .pprice .per{font-size:14px}
   .hero-shot{margin-top:44px;border-radius:16px}
   .cta-row .btn-ghost{display:none}
   .cta-row .btn{width:100%;justify-content:center}
@@ -419,11 +415,11 @@ a.bt:hover{color:var(--ink)}
   <div class="nav-in">
     <a class="brand" href="#top"><img class="wm" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0wLjQgMjEuMiAzNTUuOCA4NS44IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Imh1cm1hLiI+CiAgPHRpdGxlPmh1cm1hLjwvdGl0bGU+CiAgPHBhdGggZmlsbD0iIzBkMWYxNyIgZD0iTTIyLjY1NiA2OC44NDhMMjIuNjU2IDY4Ljg0OEwyMi42NTYgMTAwTDUuNjE1IDEwMEw1LjYxNSAyNy4yNDZMMjIuMzE0IDI3LjI0NkwyMi4zMTQgNTkuMTgwTDIxLjI0MCA1OS4xODBRMjMuMjQyIDUyLjY4NiAyNy41MTUgNDguNzA2UTMxLjc4NyA0NC43MjcgMzkuMDE0IDQ0LjcyN0wzOS4wMTQgNDQuNzI3UTQ0LjcyNyA0NC43MjcgNDguOTc1IDQ3LjI2NlE1My4yMjMgNDkuODA1IDU1LjU2NiA1NC40NDNRNTcuOTEwIDU5LjA4MiA1Ny45MTAgNjUuMjM0TDU3LjkxMCA2NS4yMzRMNTcuOTEwIDEwMEw0MC44NjkgMTAwTDQwLjg2OSA2OC41NTVRNDAuODY5IDYzLjk2NSAzOC41MjUgNjEuMzUzUTM2LjE4MiA1OC43NDAgMzEuOTgyIDU4Ljc0MEwzMS45ODIgNTguNzQwUTI5LjI0OCA1OC43NDAgMjcuMTI0IDU5LjkzN1EyNSA2MS4xMzMgMjMuODI4IDYzLjM3OVEyMi42NTYgNjUuNjI1IDIyLjY1NiA2OC44NDhaTTg4LjA4NiAxMDAuNjg0TDg4LjA4NiAxMDAuNjg0UTgyLjM3MyAxMDAuNjg0IDc4LjEwMSA5OC4xNDVRNzMuODI4IDk1LjYwNSA3MS40ODQgOTAuOTY3UTY5LjE0MSA4Ni4zMjggNjkuMTQxIDgwLjE3Nkw2OS4xNDEgODAuMTc2TDY5LjE0MSA0NS40MTBMODYuMTgyIDQ1LjQxMEw4Ni4xODIgNzYuODU1UTg2LjE4MiA4MS40NDUgODguNTUwIDg0LjA1OFE5MC45MTggODYuNjcwIDk1LjA2OCA4Ni42NzBMOTUuMDY4IDg2LjY3MFE5Ny45MDAgODYuNjcwIDk5Ljk3NiA4NS40NzRRMTAyLjA1MSA4NC4yNzcgMTAzLjIyMyA4Mi4wMDdRMTA0LjM5NSA3OS43MzYgMTA0LjM5NSA3Ni41NjNMMTA0LjM5NSA3Ni41NjNMMTA0LjM5NSA0NS40MTBMMTIxLjQzNiA0NS40MTBMMTIxLjQzNiAxMDBMMTA1LjQyMCAxMDBMMTA1LjEyNyA4Ni4yMzBMMTA1Ljg1OSA4Ni4yMzBRMTAzLjgwOSA5Mi43NzMgOTkuNTEyIDk2LjcyOVE5NS4yMTUgMTAwLjY4NCA4OC4wODYgMTAwLjY4NFpNMTQ5LjcwNyAxMDBMMTMyLjY2NiAxMDBMMTMyLjY2NiA0NS40MTBMMTQ5LjIxOSA0NS40MTBMMTQ5LjIxOSA1NS4zNzFMMTQ5LjgwNSA1NS4zNzFRMTUxLjI3MCA0OS45NTEgMTU0LjY2MyA0Ny4zMzlRMTU4LjA1NyA0NC43MjcgMTYyLjU0OSA0NC43MjdMMTYyLjU0OSA0NC43MjdRMTYzLjcyMSA0NC43MjcgMTY1LjAxNSA0NC44NzNRMTY2LjMwOSA0NS4wMjAgMTY3LjM4MyA0NS4zMTNMMTY3LjM4MyA0NS4zMTNMMTY3LjM4MyA2MC4xNTZRMTY2LjE2MiA1OS43MTcgMTY0LjE4NSA1OS40OTdRMTYyLjIwNyA1OS4yNzcgMTYwLjY0NSA1OS4yNzdMMTYwLjY0NSA1OS4yNzdRMTU3LjUyMCA1OS4yNzcgMTU1LjAyOSA2MC42NjlRMTUyLjUzOSA2Mi4wNjEgMTUxLjEyMyA2NC41MDJRMTQ5LjcwNyA2Ni45NDMgMTQ5LjcwNyA3MC4yMTVMMTQ5LjcwNyA3MC4yMTVMMTQ5LjcwNyAxMDBaTTE5MS42OTkgMTAwTDE3NC42NTggMTAwTDE3NC42NTggNDUuNDEwTDE5MC4zMzIgNDUuNDEwTDE5MS4zMDkgNTkuNTcwTDE5MC4xMzcgNTkuNTcwUTE5MS40MDYgNTQuMjQ4IDE5My45MjEgNTAuOTc3UTE5Ni40MzYgNDcuNzA1IDE5OS43ODAgNDYuMTkxUTIwMy4xMjUgNDQuNjc4IDIwNi44MzYgNDQuNjc4TDIwNi44MzYgNDQuNjc4UTIxMi42OTUgNDQuNjc4IDIxNi4yODQgNDguNDM4UTIxOS44NzMgNTIuMTk3IDIyMS44MjYgNjAuNzQyTDIyMS44MjYgNjAuNzQyTDIxOS45MjIgNjAuNzQyUTIyMS4yNDAgNTUuMDI5IDIyNC4wNzIgNTEuNDY1UTIyNi45MDQgNDcuOTAwIDIzMC43MTMgNDYuMjg5UTIzNC41MjEgNDQuNjc4IDIzOC42MjMgNDQuNjc4TDIzOC42MjMgNDQuNjc4UTI0My43NTAgNDQuNjc4IDI0Ny42ODEgNDYuODk5UTI1MS42MTEgNDkuMTIxIDI1My44NTcgNTMuMjQ3UTI1Ni4xMDQgNTcuMzczIDI1Ni4xMDQgNjMuMTg0TDI1Ni4xMDQgNjMuMTg0TDI1Ni4xMDQgMTAwTDIzOS4xMTEgMTAwTDIzOS4xMTEgNjcuMDQxUTIzOS4xMTEgNjIuODkxIDIzNi45MzggNjAuNzQyUTIzNC43NjYgNTguNTk0IDIzMS4zOTYgNTguNTk0TDIzMS4zOTYgNTguNTk0UTIyOS4wMDQgNTguNTk0IDIyNy4yMjIgNTkuNjY4UTIyNS40MzkgNjAuNzQyIDIyNC41MTIgNjIuNjcxUTIyMy41ODQgNjQuNjAwIDIyMy41ODQgNjcuMjM2TDIyMy41ODQgNjcuMjM2TDIyMy41ODQgMTAwTDIwNy4yMjcgMTAwTDIwNy4yMjcgNjYuNzk3UTIwNy4yMjcgNjMuMDM3IDIwNS4xMjcgNjAuODE1UTIwMy4wMjcgNTguNTk0IDE5OS42MDkgNTguNTk0TDE5OS42MDkgNTguNTk0UTE5Ny4yNjYgNTguNTk0IDE5NS40ODMgNTkuNjY4UTE5My43MDEgNjAuNzQyIDE5Mi43MDAgNjIuNzIwUTE5MS42OTkgNjQuNjk3IDE5MS42OTkgNjcuNTc4TDE5MS42OTkgNjcuNTc4TDE5MS42OTkgMTAwWk0yODIuNjY2IDEwMC45NzdMMjgyLjY2NiAxMDAuOTc3UTI3Ny40NDEgMTAwLjk3NyAyNzMuMzY0IDk5LjE5NFEyNjkuMjg3IDk3LjQxMiAyNjYuOTkyIDkzLjgyM1EyNjQuNjk3IDkwLjIzNCAyNjQuNjk3IDg0Ljg2M0wyNjQuNjk3IDg0Ljg2M1EyNjQuNjk3IDgwLjMyMiAyNjYuMjg0IDc3LjE5N1EyNjcuODcxIDc0LjA3MiAyNzAuNzAzIDcyLjExOVEyNzMuNTM1IDcwLjE2NiAyNzcuMTk3IDY5LjE0MVEyODAuODU5IDY4LjExNSAyODUuMDEwIDY3Ljc3M0wyODUuMDEwIDY3Ljc3M1EyODkuNjQ4IDY3LjM4MyAyOTIuNDgwIDY2LjkxOVEyOTUuMzEzIDY2LjQ1NSAyOTYuNjMxIDY1LjUyN1EyOTcuOTQ5IDY0LjYwMCAyOTcuOTQ5IDYyLjkzOUwyOTcuOTQ5IDYyLjkzOUwyOTcuOTQ5IDYyLjc0NFEyOTcuOTQ5IDYwLjg0MCAyOTcuMDcwIDU5LjUyMVEyOTYuMTkxIDU4LjIwMyAyOTQuNTMxIDU3LjUyMFEyOTIuODcxIDU2LjgzNiAyOTAuNTI3IDU2LjgzNkwyOTAuNTI3IDU2LjgzNlEyODguMTg0IDU2LjgzNiAyODYuMzUzIDU3LjUyMFEyODQuNTIxIDU4LjIwMyAyODMuMzUwIDU5LjQ3M1EyODIuMTc4IDYwLjc0MiAyODEuNjg5IDYyLjQ1MUwyODEuNjg5IDYyLjQ1MUwyNjYuMjYwIDYwLjQ0OVEyNjcuMzM0IDU1Ljc2MiAyNzAuNDgzIDUyLjIyMlEyNzMuNjMzIDQ4LjY4MiAyNzguNzM1IDQ2LjcwNFEyODMuODM4IDQ0LjcyNyAyOTAuNjc0IDQ0LjcyN0wyOTAuNjc0IDQ0LjcyN1EyOTUuNzUyIDQ0LjcyNyAzMDAuMTcxIDQ1LjkyM1EzMDQuNTkwIDQ3LjExOSAzMDcuOTEwIDQ5LjQzOFEzMTEuMjMwIDUxLjc1OCAzMTMuMDg2IDU1LjE1MVEzMTQuOTQxIDU4LjU0NSAzMTQuOTQxIDYyLjkzOUwzMTQuOTQxIDYyLjkzOUwzMTQuOTQxIDEwMEwyOTguOTI2IDEwMEwyOTguOTI2IDkyLjMzNEwyOTguNDg2IDkyLjMzNFEyOTcuMDIxIDk1LjE2NiAyOTQuNzUxIDk3LjA3MFEyOTIuNDgwIDk4Ljk3NSAyODkuNDc4IDk5Ljk3NlEyODYuNDc1IDEwMC45NzcgMjgyLjY2NiAxMDAuOTc3Wk0yODcuODQyIDg5LjY5N0wyODcuODQyIDg5LjY5N1EyOTAuNzIzIDg5LjY5NyAyOTMuMDQyIDg4LjUyNVEyOTUuMzYxIDg3LjM1NCAyOTYuNzI5IDg1LjMwM1EyOTguMDk2IDgzLjI1MiAyOTguMDk2IDgwLjU2NkwyOTguMDk2IDgwLjU2NkwyOTguMDk2IDc1LjM0MlEyOTcuMzYzIDc1LjczMiAyOTYuMjY1IDc2LjA3NFEyOTUuMTY2IDc2LjQxNiAyOTMuODQ4IDc2LjY4NVEyOTIuNTI5IDc2Ljk1MyAyOTEuMjExIDc3LjE3M1EyODkuODkzIDc3LjM5MyAyODguNjcyIDc3LjU4OEwyODguNjcyIDc3LjU4OFEyODYuMTgyIDc3LjkzMCAyODQuNDI0IDc4Ljc2MFEyODIuNjY2IDc5LjU5MCAyODEuNzM4IDgwLjkwOFEyODAuODExIDgyLjIyNyAyODAuODExIDg0LjA4MkwyODAuODExIDg0LjA4MlEyODAuODExIDg1Ljg4OSAyODEuNzM4IDg3LjEzNFEyODIuNjY2IDg4LjM3OSAyODQuMjI5IDg5LjAzOFEyODUuNzkxIDg5LjY5NyAyODcuODQyIDg5LjY5N1oiLz4KICA8cGF0aCBmaWxsPSIjOWNjMjFmIiBkPSJNMzQwLjIzMiAxMDEuMDI1TDM0MC4yMzIgMTAxLjAyNVEzMzYuMzI2IDEwMS4wMjUgMzMzLjY2NSA5OC40MTNRMzMxLjAwNCA5NS44MDEgMzMxLjAwNCA5MS45NDNMMzMxLjAwNCA5MS45NDNRMzMxLjAwNCA4OC4wMzcgMzMzLjY2NSA4NS40MjVRMzM2LjMyNiA4Mi44MTMgMzQwLjIzMiA4Mi44MTNMMzQwLjIzMiA4Mi44MTNRMzQ0LjEzOSA4Mi44MTMgMzQ2LjgwMCA4NS40MjVRMzQ5LjQ2MSA4OC4wMzcgMzQ5LjQ2MSA5MS45NDNMMzQ5LjQ2MSA5MS45NDNRMzQ5LjQ2MSA5NS44MDEgMzQ2LjgwMCA5OC40MTNRMzQ0LjEzOSAxMDEuMDI1IDM0MC4yMzIgMTAxLjAyNVoiLz4KPC9zdmc+Cg==" alt="hurma."></a>
     <nav class="nlinks">
-      <a href="#preco">Preço</a>
+      <a href="#preco">Comparativo</a>
       <a href="#como">Como funciona</a>
       <a href="#cuida">O que cuida</a>
       <a href="#integracoes">Integrações</a>
-      <a href="#planos">Planos</a>
+      <a href="#planos">Preço</a>
       <a href="#faq">Dúvidas</a>
     </nav>
     <div class="nav-cta">
@@ -433,24 +429,25 @@ a.bt:hover{color:var(--ink)}
   </div>
 </header>
 <div class="mmenu" id="mmenu">
-  <a href="#preco">Preço</a>
+  <a href="#preco">Comparativo</a>
   <a href="#como">Como funciona</a>
   <a href="#cuida">O que cuida</a>
   <a href="#integracoes">Integrações</a>
-  <a href="#planos">Planos</a>
+  <a href="#planos">Preço</a>
   <a href="#faq">Dúvidas</a>
   <a href="mailto:contato@assistenterh.com.br?subject=Quero%20contratar%20um%20assistente%20de%20RH" style="color:var(--forest-600);border-bottom:none">Contratar agora</a>
   <p class="mfoot">contato@assistenterh.com.br</p>
 </div>
 
 <nav class="srail" id="srail" aria-label="Seções da página">
-  <a href="#preco"><span class="rn">01</span>Preço</a>
+  <a href="#preco"><span class="rn">01</span>Comparativo</a>
   <a href="#como"><span class="rn">02</span>Como funciona</a>
   <a href="#cuida"><span class="rn">03</span>O que cuida</a>
   <a href="#transparencia"><span class="rn">04</span>Transparência</a>
   <a href="#integracoes"><span class="rn">05</span>Integrações</a>
-  <a href="#faq"><span class="rn">06</span>Dúvidas</a>
-  <a href="#contratar"><span class="rn">07</span>Contratar</a>
+  <a href="#planos"><span class="rn">06</span>Preço</a>
+  <a href="#faq"><span class="rn">07</span>Dúvidas</a>
+  <a href="#contratar"><span class="rn">08</span>Contratar</a>
 </nav>
 
 <main id="top" class="frame">
@@ -493,34 +490,32 @@ a.bt:hover{color:var(--ink)}
 <section class="sec" id="preco">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="kicker">#01 – O preço</span>
+      <span class="kicker">#01 – Assistente x Hurma</span>
       <h2>Um assistente de DP, por <em style="color:var(--forest-600)">cerca de 1/3 do custo</em>.</h2>
-      <p>R$ 45 por funcionário ativo. Coloque o tamanho do seu time e veja quanto fica por mês.</p>
+      <p>Você tem dois caminhos: contratar um assistente CLT ou chamar a Hurma. O trabalho é o mesmo — o custo, não.</p>
     </div>
-    <div class="calc rv">
-      <div class="calc-l">
-        <span class="calc-lbl">Calculadora</span>
-        <h3>Quantos funcionários ativos você tem?</h3>
-        <div class="calc-step">
-          <button type="button" id="calcMinus" aria-label="Diminuir">−</button>
-          <input type="number" id="calcN" value="20" min="1" max="9999" aria-label="Número de funcionários">
-          <button type="button" id="calcPlus" aria-label="Aumentar">+</button>
-        </div>
-        <div class="calc-out"><span class="calc-val" id="calcVal">R$ 900</span><span class="calc-per">/mês</span></div>
-        <p class="calc-formula" id="calcFormula">R$ 45 × 20 funcionários</p>
-        <a class="btn btn-acid" id="calcCta" href="mailto:contato@assistenterh.com.br?subject=Quero%20colocar%20meu%20DP%20em%20dia%20(time%20de%2020)">Quero colocar meu DP em dia</a>
+    <div class="price-grid">
+      <div class="pcard rv">
+        <span class="plabel">Assistente de DP (CLT)</span>
+        <div class="pprice"><span class="val">100%</span><span class="per">do custo, todo mês</span></div>
+        <p class="psub">Um humano no comando, sim — mas a folha inteira é sua.</p>
+        <ul class="plist">
+          <li>Salário, encargos, férias e 13º.</li>
+          <li>Você contrata, treina e gerencia.</li>
+          <li>Some nas férias, no atestado, nos feriados.</li>
+          <li>Um erro vira passivo trabalhista na sua conta.</li>
+        </ul>
       </div>
-      <div class="calc-r">
-        <span class="calc-lbl">Tudo incluso, sem custo por módulo</span>
-        <ul class="calc-list">
-          <li>Controle de ponto</li>
-          <li>Folha de pagamento</li>
-          <li>Gestão de benefícios</li>
-          <li>Admissões</li>
-          <li>Gestão de assinaturas</li>
-          <li>Conferência e envio de holerite</li>
-          <li>Gerenciamento de documentos</li>
-          <li>Reunião de prestação de contas</li>
+      <div class="pcard hot rv">
+        <span class="ptag">1 humano no comando</span>
+        <span class="plabel">Hurma</span>
+        <div class="pprice"><span class="val">1/3</span><span class="per">do custo de um assistente CLT</span></div>
+        <p class="psub">Um humano de verdade cuida da papelada do seu DP.</p>
+        <ul class="plist">
+          <li>Folha, ponto, benefícios, admissões e documentos — tudo incluso.</li>
+          <li>Tudo visível no painel, sempre atualizado.</li>
+          <li>Reunião de prestação de contas mensal.</li>
+          <li>Sem contratação, sem encargos, sem fidelidade.</li>
         </ul>
       </div>
     </div>
@@ -665,50 +660,35 @@ a.bt:hover{color:var(--ink)}
 <section class="sec" id="planos">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="kicker">Planos</span>
+      <span class="kicker">#06 – O preço</span>
       <h2>Um preço único, <em style="color:var(--forest-600)">que cresce com o seu time</em></h2>
       <p>Nada de plano cheio de caixinhas: R$ 45 por funcionário ativo no fechamento do mês, com o serviço completo para todos — folha, ponto, benefícios, admissões, assinaturas, reunião mensal e painel em tempo real.</p>
     </div>
-    <div class="plans rv">
-      <div class="plancard">
-        <div class="pc-head"><h3>Time de 10</h3><span class="pc-radio" aria-hidden="true"></span></div>
-        <div class="pc-price"><b>R$ 450</b><span>BRL<br>/mês</span></div>
-        <p class="pc-sub">10 funcionários ativos · R$ 45 cada</p>
-        <ul class="pc-list">
-          <li>Folha, ponto, benefícios e admissões</li>
-          <li>Assinaturas e documentos cobrados até a última pendência</li>
-          <li>Reunião mensal de prestação de contas</li>
-          <li>Painel do cliente atualizando a cada minuto</li>
-          <li>Fatura mensal por PIX, vencimento dia 10</li>
-        </ul>
-        <a class="pc-btn" href="mailto:contato@assistenterh.com.br?subject=Quero%20contratar%20(time%20de%2010)">Quero para 10 funcionários</a>
+    <div class="calc rv">
+      <div class="calc-l">
+        <span class="calc-lbl">Calculadora</span>
+        <h3>Quantos funcionários ativos você tem?</h3>
+        <div class="calc-step">
+          <button type="button" id="calcMinus" aria-label="Diminuir">−</button>
+          <input type="number" id="calcN" value="20" min="1" max="9999" aria-label="Número de funcionários">
+          <button type="button" id="calcPlus" aria-label="Aumentar">+</button>
+        </div>
+        <div class="calc-out"><span class="calc-val" id="calcVal">R$ 900</span><span class="calc-per">/mês</span></div>
+        <p class="calc-formula" id="calcFormula">R$ 45 × 20 funcionários</p>
+        <a class="btn btn-acid" id="calcCta" href="mailto:contato@assistenterh.com.br?subject=Quero%20colocar%20meu%20DP%20em%20dia%20(time%20de%2020)">Quero colocar meu DP em dia</a>
       </div>
-      <div class="plancard rec">
-        <span class="pc-pill">mais comum</span>
-        <div class="pc-head"><h3>Time de 20</h3><span class="pc-check" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1.5 6.5l3 3 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-        <div class="pc-price"><b>R$ 900</b><span>BRL<br>/mês</span></div>
-        <p class="pc-sub">20 funcionários ativos · R$ 45 cada</p>
-        <ul class="pc-list">
-          <li><b>Tudo do serviço completo</b></li>
-          <li>A fatura acompanha o seu time — entra e sai funcionário, reflete no próximo fechamento</li>
-          <li>Prioridade no atendimento do seu assistente</li>
-          <li>Relatórios do mês comparados com o anterior</li>
-          <li>Fatura mensal por PIX, vencimento dia 10</li>
+      <div class="calc-r">
+        <span class="calc-lbl">Tudo incluso, sem custo por módulo</span>
+        <ul class="calc-list">
+          <li>Controle de ponto</li>
+          <li>Folha de pagamento</li>
+          <li>Gestão de benefícios</li>
+          <li>Admissões</li>
+          <li>Gestão de assinaturas</li>
+          <li>Conferência e envio de holerite</li>
+          <li>Gerenciamento de documentos</li>
+          <li>Reunião de prestação de contas</li>
         </ul>
-        <a class="pc-btn hot" href="mailto:contato@assistenterh.com.br?subject=Quero%20contratar%20(time%20de%2020)">Quero para 20 funcionários</a>
-      </div>
-      <div class="plancard">
-        <div class="pc-head"><h3>Time de 40</h3><span class="pc-radio" aria-hidden="true"></span></div>
-        <div class="pc-price"><b>R$ 1.800</b><span>BRL<br>/mês</span></div>
-        <p class="pc-sub">40 funcionários ativos · R$ 45 cada</p>
-        <ul class="pc-list">
-          <li><b>Tudo do serviço completo</b></li>
-          <li>Escala do atendimento conforme o tamanho da operação</li>
-          <li>Rotinas de RH personalizadas com você</li>
-          <li>Onboarding completo do seu time no painel</li>
-          <li>Fatura mensal por PIX, vencimento dia 10</li>
-        </ul>
-        <a class="pc-btn" href="mailto:contato@assistenterh.com.br?subject=Quero%20contratar%20(time%20de%2040)">Quero para 40 funcionários</a>
       </div>
     </div>
     <p class="sob" style="text-align:center;margin-top:22px">Fatura gerada no início do mês com base nos funcionários ativos no fechamento — vencimento dia 10, pagamento por PIX direto no painel. Implantação única na primeira fatura, com valor combinado na contratação.</p>
@@ -718,7 +698,7 @@ a.bt:hover{color:var(--ink)}
 <section class="sec" id="faq">
   <div class="wrap">
     <div class="sec-head rv" style="text-align:center;margin-left:auto;margin-right:auto">
-      <span class="kicker" style="justify-content:center">#06 – Dúvidas</span>
+      <span class="kicker" style="justify-content:center">#07 – Dúvidas</span>
       <h2>Perguntas diretas, <em style="color:var(--forest-600)">respostas diretas</em></h2>
     </div>
     <div class="faq rv">
