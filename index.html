@@ -314,20 +314,17 @@ a.bt:hover{color:var(--ink)}
 .bl-legal .bt{font-size:9px;letter-spacing:.06em}
 .bt-link{background:none;border:0;cursor:pointer;padding:0;font:inherit}
 .bt-link:hover{color:var(--ink)}
-/* banner de cookies (LGPD) — caixinha padrão no canto, só na entrada */
-.ckbar{position:fixed;right:20px;bottom:20px;z-index:90;display:none}
-.ckbar.show{display:block}
-.ck-in{background:var(--forest);color:#fff;border:1px solid var(--forest-800);border-radius:14px;padding:16px 18px;max-width:340px;box-shadow:0 24px 48px -20px rgba(13,31,23,.55);animation:ckin .45s cubic-bezier(.22,1,.36,1)}
+/* banner de cookies (LGPD) — caixinha no centro da tela, só na entrada */
+.ckbar{position:fixed;left:16px;right:16px;bottom:20px;z-index:90;display:none;justify-content:center;pointer-events:none}
+.ckbar.show{display:flex}
+.ck-in{pointer-events:auto;background:var(--forest);color:#fff;border:1px solid var(--forest-800);border-radius:14px;padding:16px 18px;max-width:340px;box-shadow:0 24px 48px -20px rgba(13,31,23,.55);animation:ckin .45s cubic-bezier(.22,1,.36,1)}
 @keyframes ckin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .ck-in p{font-size:13px;line-height:1.55;color:rgba(255,255,255,.78);margin:0 0 12px}
-.ck-in a{color:var(--acid);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.ck-in a{color:var(--acid);text-decoration:underline;text-underline-offset:3px;white-space:nowrap;cursor:pointer}
 .ck-in .btn{width:100%;justify-content:center}
 @media (prefers-reduced-motion:reduce){.ck-in{animation:none}}
-@media(max-width:640px){.ckbar{right:12px;left:12px;bottom:12px}.ck-in{max-width:none}}
+@media(max-width:640px){.ckbar{left:12px;right:12px;bottom:12px}.ck-in{max-width:none}}
 /* seções legais embutidas (privacidade / termos / cookies) */
-.legalwrap{background:var(--bg)}
-.legalwrap .sec{padding:72px 0}
-.legalwrap .sec+.sec{border-top:1px solid var(--line)}
 .lg{max-width:760px}
 .lg h2{font-family:var(--serif);font-weight:355;font-variation-settings:"SOFT" 100;letter-spacing:-.02em;font-size:clamp(30px,3.6vw,44px);margin:14px 0 8px;line-height:1.08}
 .lg h2 em{font-style:italic;font-weight:345;color:var(--forest-600)}
@@ -757,10 +754,7 @@ a.bt:hover{color:var(--ink)}
   </div>
 </section>
 
-<!-- ===== Políticas (LGPD) — embutidas para funcionar em qualquer hospedagem ===== -->
-<div class="legalwrap">
-
-<!-- ===== Modais legais (privacidade / termos) ===== -->
+<!-- ===== Modais legais (privacidade / termos / cookies) ===== -->
 <div class="modal" id="mPrivacidade" role="dialog" aria-modal="true" aria-label="Política de Privacidade">
   <div class="mbk" data-close></div>
   <div class="mbox">
@@ -777,7 +771,7 @@ a.bt:hover{color:var(--ink)}
       <li><b>Dados da empresa contratante e dos usuários:</b> razão social, CNPJ, nome, e-mail e senha dos usuários que acessam a plataforma.</li>
       <li><b>Dados de funcionários</b> (inseridos pela empresa contratante): dados cadastrais e de contato, CPF, cargo, salário, jornada, registro de ponto, benefícios e documentos admitivos e contratuais.</li>
       <li><b>Dados de candidatos a admissão:</b> os informados no formulário de admissão (dados pessoais, documentos e anexos), enviados pelo próprio candidato mediante link e PIN.</li>
-      <li><b>Dados de navegação do site:</b> uso básico do site institucional, sem perfilação publicitária. Detalhes na seção <a href="#cookies" style="color:var(--forest-600);text-decoration:underline">Política de Cookies</a>.</li>
+      <li><b>Dados de navegação do site:</b> uso básico do site institucional, sem perfilação publicitária. Detalhes na <a href="#cookies" data-modal="mCookies" style="color:var(--forest-600);text-decoration:underline">Política de Cookies</a>.</li>
     </ul>
     <h3>3. Para que usamos</h3>
     <ul>
@@ -853,8 +847,11 @@ a.bt:hover{color:var(--ink)}
   </div></div>
 </div>
 
-<section class="sec" id="cookies">
-  <div class="wrap frame"><div class="lg">
+<div class="modal" id="mCookies" role="dialog" aria-modal="true" aria-label="Política de Cookies">
+  <div class="mbk" data-close></div>
+  <div class="mbox">
+    <button class="mclose" data-close aria-label="Fechar">✕</button>
+    <div class="lg">
     <span class="kicker">Cookies &amp; consentimento</span>
     <h2>Política de <em>Cookies</em></h2>
     <p class="upd">Atualizada em 9 de setembro de 2026</p>
@@ -875,14 +872,12 @@ a.bt:hover{color:var(--ink)}
       <li><b>Nenhuma venda de dados</b> a terceiros, nunca.</li>
     </ul>
     <h3>3. Como gerenciar o seu consentimento</h3>
-    <p>Ao entrar no site, uma caixinha no canto pergunta se você aceita os cookies opcionais — basta clicar em <b>Aceitar</b>, e a sua escolha fica guardada na chave <code>hurma-cookie-consent</code> do armazenamento local do navegador, sem perguntar de novo. Os cookies <b>essenciais</b> (sessão e preferência de consentimento) rodam independentemente do aceite, porque são necessários para o site funcionar. Para mudar de ideia depois, limpe os dados do site nas configurações do seu navegador.</p>
+    <p>Ao entrar no site, uma caixinha no centro da tela pergunta se você aceita os cookies opcionais — basta clicar em <b>Aceitar</b>, e a sua escolha fica guardada na chave <code>hurma-cookie-consent</code> do armazenamento local do navegador, sem perguntar de novo. Para mudar de ideia depois, limpe os dados do site nas configurações do seu navegador.</p>
     <p>Os cookies <b>essenciais</b> (sessão e preferência de consentimento) são necessários para o funcionamento do serviço e não dependem de consentimento — é o que permite, por exemplo, manter sua sessão segura e lembrar a sua escolha.</p>
     <div class="lbox"><p><b>Em resumo:</b> usamos o mínimo possível. Sessão e preferência são essenciais; análise é opcional e só carrega se você aceitar. Zero publicidade, zero rastreamento, zero venda de dados.</p></div>
     <h3>4. Contato</h3>
     <p>Dúvidas sobre cookies ou sobre o tratamento de dados: <b>contato@assistenterh.com.br</b>.</p>
   </div></div>
-</section>
-
 </div>
 
 <footer class="footer">
@@ -894,7 +889,7 @@ a.bt:hover{color:var(--ink)}
         <span class="status"><span class="sdot"></span>Aceitando novas empresas</span>
       </div>
     </div>
-    <div class="bottom"><span class="bt">© 2026 Hurma</span><a class="bt" href="mailto:contato@assistenterh.com.br">contato@assistenterh.com.br</a><div class="bl-legal"><button class="bt bt-link" data-modal="mPrivacidade" type="button">Privacidade</button><button class="bt bt-link" data-modal="mTermos" type="button">Termos</button><a class="bt" href="#cookies">Cookies</a></div></div>
+    <div class="bottom"><span class="bt">© 2026 Hurma</span><a class="bt" href="mailto:contato@assistenterh.com.br">contato@assistenterh.com.br</a><div class="bl-legal"><button class="bt bt-link" data-modal="mPrivacidade" type="button">Privacidade</button><button class="bt bt-link" data-modal="mTermos" type="button">Termos</button><button class="bt bt-link" data-modal="mCookies" type="button">Cookies</button></div></div>
   </div>
 </footer>
 </main>
@@ -902,7 +897,7 @@ a.bt:hover{color:var(--ink)}
 <!-- Banner de consentimento de cookies (LGPD) — caixinha, só na entrada -->
 <div class="ckbar" id="ckbar" role="dialog" aria-live="polite" aria-label="Consentimento de cookies">
   <div class="ck-in">
-    <p>Usamos cookies essenciais para o site funcionar e, com o seu aceite, um analytics anônimo. <a href="#cookies">Política de Cookies</a></p>
+    <p>Usamos cookies essenciais para o site funcionar e, com o seu aceite, um analytics anônimo. <a href="#cookies" data-modal="mCookies">Política de Cookies</a></p>
     <button class="btn btn-acid btn-sm" id="ckAccept" type="button">Aceitar</button>
   </div>
 </div>
