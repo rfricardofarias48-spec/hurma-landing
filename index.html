@@ -190,10 +190,14 @@ em{font-style:normal}
 .plist li::before{content:"—";font-weight:700;color:#b7c2b9;flex-shrink:0}
 .pcard.hot .plist li::before{content:"✓";color:var(--acid);font-weight:800}
 .ptag{position:absolute;top:22px;right:22px;background:var(--acid);color:var(--ink);font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:7px 13px}
-.why{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:34px 36px;display:flex;gap:28px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-.why h3{font-size:clamp(20px,2.2vw,27px);margin-bottom:8px}
-.why p{color:var(--mut);max-width:660px;font-size:15.5px}
+.why{margin-top:20px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:36px;display:flex;gap:32px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.why-q{max-width:56ch}
+.why h3{font-family:var(--serif);font-weight:355;letter-spacing:-.02em;font-size:clamp(22px,2.6vw,30px);margin-bottom:10px}
+.why p{color:var(--mut);font-size:15.5px;line-height:1.65}
 .why b{color:var(--ink)}
+.why-tags{display:flex;flex-direction:column;gap:10px;flex-shrink:0}
+.why-tag{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:10px 16px}
+.why-tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acid-600)}
 /* steps */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .step{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;display:flex;flex-direction:column;gap:16px}
@@ -398,6 +402,7 @@ a.bt:hover{color:var(--ink)}
   .transp{padding:32px}
   .cta-final{padding:56px 24px}
   .why{padding:26px}
+  .why-tags{flex-direction:row;flex-wrap:wrap}
     .pprice{flex-wrap:wrap}
   .pprice .val{white-space:nowrap;font-size:38px}
   .pprice .per{font-size:14px}
@@ -519,9 +524,14 @@ a.bt:hover{color:var(--ink)}
       </div>
     </div>
     <div class="why rv">
-      <div>
+      <div class="why-q">
         <h3>Como a Hurma custa tão menos?</h3>
-        <p><b>Porque a tecnologia faz o trabalho pesado — e um humano revisa o que importa.</b> Você não paga salário, encargos nem estrutura: só o serviço prestado, com fatura simples todo mês.</p>
+        <p><b>A tecnologia faz o trabalho pesado — e um humano revisa o que importa.</b> Você não paga folha: só o serviço, em fatura simples todo mês.</p>
+      </div>
+      <div class="why-tags" aria-label="O que você não paga">
+        <span class="why-tag">Sem salário</span>
+        <span class="why-tag">Sem encargos</span>
+        <span class="why-tag">Sem estrutura</span>
       </div>
     </div>
   </div>
