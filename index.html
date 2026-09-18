@@ -340,10 +340,11 @@ body { margin: 0; background: var(--hurma-paper); }
   const num = (v) => parseInt(v, 10) || 0;
 
   // --- geometria lida das variaveis CSS (respeita media queries) ---
-  let TOP_H = 120, LOGO_HERO = 88, LOGO_SMALL = 36, LOGO_RANGE = 120;
+  let TOP_H = 120, LOGO_PAD = 14, LOGO_HERO = 88, LOGO_SMALL = 36, LOGO_RANGE = 120;
   function readVars() {
     const cs = getComputedStyle(document.documentElement);
     TOP_H      = num(cs.getPropertyValue('--top-h'))             || 120;
+    LOGO_PAD   = num(cs.getPropertyValue('--logo-pad'))          || 14;
     LOGO_HERO  = num(cs.getPropertyValue('--logo-h-hero'))       || 88;
     LOGO_SMALL = num(cs.getPropertyValue('--logo-h-small'))      || 36;
     LOGO_RANGE = num(cs.getPropertyValue('--logo-shrink-range')) || 120;
@@ -446,7 +447,19 @@ body { margin: 0; background: var(--hurma-paper); }
     // --- logo: encolhe de forma linear e ligada ao scroll (estilo polsia) ---
     // k = 0 no topo (tamanho do hero), k = 1 apos LOGO_RANGE pixels (tam. pequeno)
     const k = clamp(window.scrollY / LOGO_RANGE, 0, 1);
-    if (logo) logo.style.height = (LOGO_HERO + (LOGO_SMALL - LOGO_HERO) * k).toFixed(1) + 'px';
+    const alturaLogo = LOGO_HERO + (LOGO_SMALL - LOGO_HERO) * k;
+    if (logo) logo.style.height = alturaLogo.toFixed(1) + 'px';
+
+    // cor do logo: fundo escuro = logo claro; fundo claro = logo escuro.
+    // a cena que passa por baixo do centro do logo (no tamanho atual) decide
+    // a cor, e a troca acontece com crossfade suave (transition no CSS)
+    const logoY = TOP_H + LOGO_PAD + alturaLogo / 2;
+    let fundoEscuro = false;
+    for (const s of logoBgScenes) {
+      const r = s.el.getBoundingClientRect();
+      if (r.top <= logoY && r.bottom > logoY) { fundoEscuro = s.dark; break; }
+    }
+    if (wordmark) wordmark.classList.toggle('on-dark', fundoEscuro);
 
     if (reduce.matches) return; // usuario sem animacao: texto fica estatico
 
@@ -474,16 +487,6 @@ body { margin: 0; background: var(--hurma-paper); }
     // apoios: caption e CTA acompanham a saida do titulo
     if (caption) caption.style.opacity = (1 - ease(clamp(heroSub / CAPTION_RANGE, 0, 1))).toFixed(3);
     if (cta)     cta.style.opacity     = (1 - ease(clamp(heroSub / CTA_RANGE, 0, 1))).toFixed(3);
-
-    // cor do logo: preto sobre fundo claro, branco sobre fundo escuro
-    // (a cena que passa por baixo do centro do logo fixo decide a cor)
-    const logoY = TOP_H + 32;
-    let fundoEscuro = false;
-    for (const s of logoBgScenes) {
-      const r = s.el.getBoundingClientRect();
-      if (r.top <= logoY && r.bottom > logoY) { fundoEscuro = s.dark; break; }
-    }
-    if (wordmark) wordmark.classList.toggle('on-dark', fundoEscuro);
 
     // abas seguintes: mesma onda, mesma subida e CTA saindo junto
     for (const sc of fadeScenes) {
