@@ -114,7 +114,7 @@ body { margin: 0; background: var(--hurma-paper); }
 .scroll-hint .hint-arrow { display: block; font-family: var(--hurma-mono); font-size: 14px; margin-top: 6px; animation: drift-down 2.5s ease-in-out infinite; }
 .desk-scene { height: calc(100svh - var(--terminal-height) - var(--header-height)); min-height: 720px; }
 .desk-scene .scene-image { object-position: center 60%; }
-.desk-copy { width: fit-content; max-width: calc(100% - 40px); margin: 0 auto; padding-top: calc(var(--top-h) + 68px); text-align: center; }
+.desk-copy { width: fit-content; max-width: calc(100% - 40px); margin: 0 auto; padding-top: calc(var(--logo-pad) + var(--logo-h-small) + 24px); text-align: center; }
 .hurma-site h2 { font-family: var(--hurma-serif); font-size: 60px; font-weight: 400; line-height: 1.05; letter-spacing: -.045em; }
 .desk-copy h2 { font-size: clamp(36px, 3.7vw, 60px); margin-bottom: 20px; }
 .desk-copy p { font-family: var(--hurma-serif); font-size: 26px; line-height: 1.5; }
@@ -163,7 +163,7 @@ body { margin: 0; background: var(--hurma-paper); }
   .hurma-site h1 { font-size: 60px; }
   .hero-scene { min-height: 580px; }
   .desk-scene { min-height: 670px; }
-  .desk-copy { padding-top: calc(var(--top-h) + 60px); }
+  .desk-copy { padding-top: calc(var(--logo-pad) + var(--logo-h-small) + 22px); }
   .desk-copy h2 { font-size: 40px; }
   .desk-copy p { font-size: 24px; }
   .team-copy { width: 480px; }
@@ -188,7 +188,7 @@ body { margin: 0; background: var(--hurma-paper); }
   .scroll-hint { bottom: 24px; font-size: 17px; }
   .desk-scene { min-height: 660px; }
   .desk-scene .scene-image { object-position: 53% 75%; }
-  .desk-copy { padding-top: calc(var(--top-h) + 52px); max-width: calc(100% - 32px); }
+  .desk-copy { padding-top: calc(var(--logo-pad) + var(--logo-h-small) + 20px); max-width: calc(100% - 32px); }
   .desk-copy h2 { font-size: 26px; line-height: 1.04; max-width: 300px; margin-bottom: 13px; }
   .desk-copy p { font-size: 17px; line-height: 1.4; }
   .team-scene { padding-top: calc(var(--top-h) + 36px); }
@@ -393,12 +393,12 @@ body { margin: 0; background: var(--hurma-paper); }
   // os dados da aba somem logo no inicio da rolagem, na mesma janela em
   // que o logo termina de encolher, para o logo pequeno ficar em destaque.
   // A primeira letra comeca imediatamente; a ultima termina em FADE_RANGE.
-  const FADE_RANGE    = 150;  // largura total da onda de dissolver (px)
+  const FADE_RANGE    = 220;  // largura total da onda de dissolver (px)
   const SPREAD        = 0.52; // atraso entre a primeira e a ultima letra
   const WIDTH         = 0.48; // largura da janela de fade de cada letra
-  const HINT_RANGE    = 90;   // scroll-hint: ainda mais rapida
-  const CAPTION_RANGE = 120;  // caption sai junto com a onda
-  const CTA_RANGE     = 140;  // CTA um pouco depois da caption
+  const HINT_RANGE    = 140;  // scroll-hint: ainda mais rapida
+  const CAPTION_RANGE = 170;  // caption sai junto com a onda
+  const CTA_RANGE     = 200;  // CTA um pouco depois da caption
 
   // cada letra tem sua propria janela de saida, distribuida pelo texto:
   // efeito de dissolver em onda, da esquerda pra direita
