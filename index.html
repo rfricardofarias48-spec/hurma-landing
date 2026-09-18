@@ -329,9 +329,10 @@ body { margin: 0; background: var(--hurma-paper); }
   const num = (v) => parseInt(v, 10) || 0;
 
   // --- geometria lida das variaveis CSS (respeita media queries) ---
-  let LOGO_HERO = 88, LOGO_SMALL = 36, LOGO_RANGE = 120;
+  let TOP_H = 120, LOGO_HERO = 88, LOGO_SMALL = 36, LOGO_RANGE = 120;
   function readVars() {
     const cs = getComputedStyle(document.documentElement);
+    TOP_H      = num(cs.getPropertyValue('--top-h'))             || 120;
     LOGO_HERO  = num(cs.getPropertyValue('--logo-h-hero'))       || 88;
     LOGO_SMALL = num(cs.getPropertyValue('--logo-h-small'))      || 36;
     LOGO_RANGE = num(cs.getPropertyValue('--logo-shrink-range')) || 120;
@@ -370,7 +371,10 @@ body { margin: 0; background: var(--hurma-paper); }
   }
 
   let titleChars = [], hintChars = [];
-  if (!reduce.matches && heroTitle) {
+  const fadeScenes = [];   // cenas que dissolvem ao sair, igual ao hero
+  const motionOk = !reduce.matches;
+
+  if (motionOk && heroTitle) {
     titleChars = splitChars(heroTitle);
     // nome acessivel continua sendo a frase inteira (na letra por letra)
     heroTitle.setAttribute('aria-label', 'A Hurma descomplica o seu departamento pessoal.');
@@ -384,6 +388,25 @@ body { margin: 0; background: var(--hurma-paper); }
         hintChars.forEach(c => c.setAttribute('aria-hidden', 'true'));
       }
     }
+  }
+
+  // --- abas seguintes recebem o mesmo efeito do hero ---
+  // [cena, conteudo, CTA de apoio que acompanha a saida]
+  if (motionOk) {
+    [['#braco-direito', '.desk-copy', '.desk-scene .scene-bottom .hurma-cta'],
+     ['#rotina', '.team-copy', '.team-photo-cta .hurma-cta']].forEach(par => {
+      const sceneEl = document.querySelector(par[0]);
+      const copyEl = document.querySelector(par[1]);
+      if (!sceneEl || !copyEl) return;
+      const chars = [];
+      copyEl.querySelectorAll('h2, p').forEach(el => {
+        const letras = splitChars(el);
+        el.setAttribute('aria-label', el.textContent.trim());
+        letras.forEach(c => c.setAttribute('aria-hidden', 'true'));
+        chars.push(...letras);
+      });
+      fadeScenes.push({ root: sceneEl, chars: chars, cta: document.querySelector(par[2]) });
+    });
   }
 
   // suavizacao (smoothstep): entrada e saida mais delicadas
@@ -414,9 +437,11 @@ body { margin: 0; background: var(--hurma-paper); }
 
     if (reduce.matches) return; // usuario sem animacao: texto fica estatico
 
-    // progresso normalizado por faixa (quanto a rolagem andou, em px)
-    const q  = clamp(window.scrollY / FADE_RANGE, 0, 1);
-    const qh = clamp(window.scrollY / HINT_RANGE, 0, 1);
+    // progresso de cada cena: quanto o topo dela ja subiu alem da
+    // posicao ancorada (base do cabecalho fixo), contado em px de rolagem
+    const heroSub = TOP_H - hero.getBoundingClientRect().top;
+    const q  = clamp(heroSub / FADE_RANGE, 0, 1);
+    const qh = clamp(heroSub / HINT_RANGE, 0, 1);
 
     // h1: letras se dissipam em onda, com uma leve subida
     const n = titleChars.length;
@@ -434,8 +459,21 @@ body { margin: 0; background: var(--hurma-paper); }
     if (hintArrow) hintArrow.style.opacity = (1 - ease(qh)).toFixed(3);
 
     // apoios: caption e CTA acompanham a saida do titulo
-    if (caption) caption.style.opacity = (1 - ease(clamp(window.scrollY / CAPTION_RANGE, 0, 1))).toFixed(3);
-    if (cta)     cta.style.opacity     = (1 - ease(clamp(window.scrollY / CTA_RANGE, 0, 1))).toFixed(3);
+    if (caption) caption.style.opacity = (1 - ease(clamp(heroSub / CAPTION_RANGE, 0, 1))).toFixed(3);
+    if (cta)     cta.style.opacity     = (1 - ease(clamp(heroSub / CTA_RANGE, 0, 1))).toFixed(3);
+
+    // abas seguintes: mesma onda, mesma subida e CTA saindo junto
+    for (const sc of fadeScenes) {
+      const sub = TOP_H - sc.root.getBoundingClientRect().top;
+      const p = clamp(sub / FADE_RANGE, 0, 1);
+      const n = sc.chars.length;
+      if (n) sc.chars.forEach((c, i) => {
+        const o = charOpacity(n > 1 ? i / (n - 1) : 0, p);
+        c.style.opacity = o.toFixed(3);
+        c.style.transform = 'translateY(' + (-6 * (1 - o)).toFixed(2) + 'px)';
+      });
+      if (sc.cta) sc.cta.style.opacity = (1 - ease(p)).toFixed(3);
+    }
   }
 
   let raf = 0;
