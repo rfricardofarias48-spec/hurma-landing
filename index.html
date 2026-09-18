@@ -57,11 +57,16 @@
   --hurma-mono: 'Courier New', Courier, monospace;
   --header-height: 32px;
   --terminal-height: 88px;
+  --top-h: calc(var(--terminal-height) + var(--header-height));
+  --logo-pad: 20px;
+  --logo-h-hero: 88px;
+  --logo-h-small: 36px;
+  --logo-shrink-range: 120px;
 }
-html { scroll-behavior: smooth; scroll-padding-top: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--top-h); }
 body { margin: 0; background: var(--hurma-paper); }
 .hurma-site, .hurma-site *, .hurma-site *::before, .hurma-site *::after { box-sizing: border-box; }
-.hurma-site { color: var(--hurma-ink); background: var(--hurma-paper); -webkit-font-smoothing: antialiased; }
+.hurma-site { color: var(--hurma-ink); background: var(--hurma-paper); -webkit-font-smoothing: antialiased; padding-bottom: var(--top-h); }
 .hurma-site ::selection { background: var(--hurma-blue); color: white; }
 .hurma-site a { color: inherit; text-decoration: none; }
 .hurma-site button { font: inherit; }
@@ -70,7 +75,7 @@ body { margin: 0; background: var(--hurma-paper); }
 .hurma-site img { display: block; }
 .hurma-skip { position: fixed; top: -90px; left: 16px; z-index: 100; padding: 12px 20px; background: var(--hurma-paper); color: var(--hurma-ink) !important; }
 .hurma-skip:focus { top: 12px; }
-.system-header { position: relative; z-index: 2; font-family: var(--hurma-mono); }
+.system-header { position: fixed; top: 0; left: 0; right: 0; z-index: 90; font-family: var(--hurma-mono); }
 .hurma-terminal { height: var(--terminal-height); background: #000; color: #fff;
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
   padding: 10px 14px; font-family: var(--hurma-mono); font-size: 11px; line-height: 16.5px;
@@ -85,11 +90,11 @@ body { margin: 0; background: var(--hurma-paper); }
 .hurma-login:hover { filter: brightness(1.15); }
 .hurma-login:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .announcement { height: var(--header-height); background: var(--hurma-blue); display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; letter-spacing: .055em; }
-.brand-row { position: absolute; top: calc(var(--terminal-height) + var(--header-height) + 30px); left: 0; right: 0; display: flex; align-items: center; justify-content: center; color: var(--hurma-paper); }
-.hurma-wordmark { display: inline-flex; align-items: center; color: #1a1a1a; }
-  .hurma-wordmark .hurma-logotype { display: block; height: 88px; width: auto; }
+.brand-row { position: fixed; top: var(--top-h); left: 0; right: 0; padding-top: var(--logo-pad); display: flex; justify-content: center; z-index: 30; pointer-events: none; color: var(--hurma-paper); }
+.hurma-wordmark { display: inline-flex; align-items: center; color: #1a1a1a; pointer-events: auto; }
+  .hurma-wordmark .hurma-logotype { display: block; height: var(--logo-h-hero); width: auto; }
 .hurma-symbol { width: 56px; height: 56px; flex: none; color: var(--hurma-blue); }
-.hurma-site main { padding-top: 0; }
+.hurma-site main { padding-top: var(--top-h); }
 .scene { position: relative; isolation: isolate; overflow: hidden; }
 .scene-image { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; z-index: -2; }
 .hero-scene { height: calc(100svh - var(--terminal-height) - var(--header-height)); min-height: 610px; color: var(--hurma-paper); display: flex; align-items: center; justify-content: center; }
@@ -109,12 +114,12 @@ body { margin: 0; background: var(--hurma-paper); }
 .scroll-hint .hint-arrow { display: block; font-family: var(--hurma-mono); font-size: 14px; margin-top: 6px; animation: drift-down 2.5s ease-in-out infinite; }
 .desk-scene { height: calc(100svh - var(--terminal-height) - var(--header-height)); min-height: 720px; }
 .desk-scene .scene-image { object-position: center 60%; }
-.desk-copy { width: fit-content; max-width: calc(100% - 40px); margin: 0 auto; padding-top: 18px; text-align: center; }
+.desk-copy { width: fit-content; max-width: calc(100% - 40px); margin: 0 auto; padding-top: calc(var(--top-h) + 68px); text-align: center; }
 .hurma-site h2 { font-family: var(--hurma-serif); font-size: 60px; font-weight: 400; line-height: 1.05; letter-spacing: -.045em; }
 .desk-copy h2 { font-size: clamp(36px, 3.7vw, 60px); margin-bottom: 20px; }
 .desk-copy p { font-family: var(--hurma-serif); font-size: 26px; line-height: 1.5; }
 .scene-bottom { position: absolute; bottom: 28px; left: 0; right: 0; display: flex; justify-content: center; }
-.team-scene { overflow: hidden; padding-top: 100px; background: var(--hurma-paper); }
+.team-scene { overflow: hidden; padding-top: calc(var(--top-h) + 44px); background: var(--hurma-paper); }
 .team-copy { width: 550px; max-width: calc(100% - 48px); margin: 0 auto; position: relative; z-index: 1; }
 .team-copy h2 { font-size: 48px; margin-bottom: 20px; }
 .task-list p, .team-signoff { font-family: var(--hurma-serif); font-size: 27px; line-height: 1.45; letter-spacing: -.02em; }
@@ -133,7 +138,7 @@ body { margin: 0; background: var(--hurma-paper); }
 .closing-email { font-family: var(--hurma-mono); font-size: 10px; margin-top: 20px; }
 .closing-email:hover { text-decoration: underline; text-underline-offset: 4px; }
 .closing-bottom { position: absolute; bottom: 25px; left: 28px; right: 28px; display: flex; justify-content: space-between; gap: 24px; font-family: var(--hurma-mono); font-size: 9px; letter-spacing: .04em; }
-.hurma-footer { padding: 0 28px; font-family: var(--hurma-mono); background: var(--hurma-paper); }
+.hurma-footer { padding: calc(var(--top-h) + 8px) 28px 0; font-family: var(--hurma-mono); background: var(--hurma-paper); }
 .hurma-details { border-bottom: 1px solid var(--hurma-line); }
 .hurma-details summary { display: flex; justify-content: space-between; align-items: center; list-style: none; cursor: pointer; min-height: 76px; font-size: 11px; }
 .hurma-details summary::-webkit-details-marker { display: none; }
@@ -153,12 +158,12 @@ body { margin: 0; background: var(--hurma-paper); }
 @keyframes drift-down { 50% { transform: translateY(4px); } }
 @media (min-width: 1800px) { .hero-message { padding-bottom: 60px; } }
 @media (max-width: 800px) {
-  .hurma-wordmark .hurma-logotype { height: 72px; }
+  :root { --logo-h-hero: 72px; --logo-h-small: 30px; }
   .hurma-symbol { width: 48px; height: 48px; }
   .hurma-site h1 { font-size: 60px; }
   .hero-scene { min-height: 580px; }
   .desk-scene { min-height: 670px; }
-  .desk-copy { padding-top: 26px; }
+  .desk-copy { padding-top: calc(var(--top-h) + 60px); }
   .desk-copy h2 { font-size: 40px; }
   .desk-copy p { font-size: 24px; }
   .team-copy { width: 480px; }
@@ -168,14 +173,11 @@ body { margin: 0; background: var(--hurma-paper); }
   .details-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
 }
 @media (max-width: 540px) {
-  :root { --header-height: 44px; }
+  :root { --header-height: 44px; --logo-h-hero: 62px; --logo-h-small: 28px; --logo-pad: 14px; }
   .announcement { padding: 0 14px; text-align: center; line-height: 1.3; }
   .announcement { font-size: 8px; letter-spacing: .02em; gap: 7px; }
   .status-dot { width: 5px; height: 5px; }
-  .brand-row { top: calc(var(--terminal-height) + var(--header-height) + 14px); }
   .hurma-terminal { padding: 10px 10px; gap: 10px; }
-  .hurma-wordmark .hurma-logotype { height: 62px; }
-  .brand-row.is-small .hurma-wordmark .hurma-logotype { height: 62px; }
   .hero-scene { min-height: 560px; }
   .hero-image { object-position: 50% 50%; }
   .hero-message { padding: 18px 14px 0; }
@@ -186,10 +188,10 @@ body { margin: 0; background: var(--hurma-paper); }
   .scroll-hint { bottom: 24px; font-size: 17px; }
   .desk-scene { min-height: 660px; }
   .desk-scene .scene-image { object-position: 53% 75%; }
-  .desk-copy { padding-top: 20px; max-width: calc(100% - 32px); }
+  .desk-copy { padding-top: calc(var(--top-h) + 52px); max-width: calc(100% - 32px); }
   .desk-copy h2 { font-size: 26px; line-height: 1.04; max-width: 300px; margin-bottom: 13px; }
   .desk-copy p { font-size: 17px; line-height: 1.4; }
-  .team-scene { padding-top: 90px; }
+  .team-scene { padding-top: calc(var(--top-h) + 36px); }
   .team-copy { max-width: calc(100% - 48px); }
   .team-copy h2 { font-size: 37px; }
   .task-list p, .team-signoff { font-size: 23px; line-height: 1.5; }
@@ -312,21 +314,36 @@ body { margin: 0; background: var(--hurma-paper); }
 })();
 </script>
 <script>
-/* Efeito "troca de aba" (estilo polsia): ao rolar para a proxima secao,
-   as letras do texto atual somem progressivamente. A scroll-hint some
-   numa faixa bem mais curta (some completamente antes do h1). */
+/* Cabecalho fixo (estilo polsia): a barra preta e a linha azul
+   permanecem fixas no topo enquanto a pagina rola. O logo acompanha o
+   cabecalho e encolhe de forma linear e ligada ao scroll — some aos
+   poucos, fica pequeno, e volta ao tamanho do hero assim que o
+   usuario retorna ao topo. O efeito de "troca de aba" faz as letras
+   do hero se dissiparem suavemente conforme a secao sai de cena. */
 (() => {
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (reduce.matches) return; // usuario sem animacao: texto fica estatico
-
   const hero = document.querySelector('.hero-scene');
   if (!hero) return;
 
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const num = (v) => parseInt(v, 10) || 0;
+
+  // --- geometria lida das variaveis CSS (respeita media queries) ---
+  let LOGO_HERO = 88, LOGO_SMALL = 36, LOGO_RANGE = 120;
+  function readVars() {
+    const cs = getComputedStyle(document.documentElement);
+    LOGO_HERO  = num(cs.getPropertyValue('--logo-h-hero'))       || 88;
+    LOGO_SMALL = num(cs.getPropertyValue('--logo-h-small'))      || 36;
+    LOGO_RANGE = num(cs.getPropertyValue('--logo-shrink-range')) || 120;
+  }
+  readVars();
+
+  const logo = document.querySelector('.hurma-logotype');
   const heroTitle = document.querySelector('[data-split="hero-title"]');
   const hint = document.querySelector('[data-split="scroll-hint"]');
+  const hintArrow = hint && hint.querySelector('.hint-arrow');
   const caption = document.querySelector('.hero-caption');
-  const cta = hero && hero.querySelector('.hurma-cta');
-  if (!heroTitle) return;
+  const cta = hero.querySelector('.hurma-cta');
 
   // --- particiona em spans, preservando <br> ---
   function splitChars(el) {
@@ -352,64 +369,73 @@ body { margin: 0; background: var(--hurma-paper); }
     return chars;
   }
 
-  const titleChars = splitChars(heroTitle);
-  // nome acessivel continua sendo a frase inteira (na letra por letra)
-  heroTitle.setAttribute('aria-label', 'A Hurma descomplica o seu departamento pessoal.');
-  titleChars.forEach(c => c.setAttribute('aria-hidden', 'true'));
+  let titleChars = [], hintChars = [];
+  if (!reduce.matches && heroTitle) {
+    titleChars = splitChars(heroTitle);
+    // nome acessivel continua sendo a frase inteira (na letra por letra)
+    heroTitle.setAttribute('aria-label', 'A Hurma descomplica o seu departamento pessoal.');
+    titleChars.forEach(c => c.setAttribute('aria-hidden', 'true'));
 
-  let hintChars = [];
-  if (hint) {
-    // so o texto e particionado; a seta (.hint-arrow) continua intacta
-    const hintText = hint.querySelector('.hint-text');
-    if (hintText) {
-      hintChars = splitChars(hintText);
-      hintChars.forEach(c => c.setAttribute('aria-hidden', 'true'));
+    if (hint) {
+      // so o texto e particionado; a seta (.hint-arrow) continua intacta
+      const hintText = hint.querySelector('.hint-text');
+      if (hintText) {
+        hintChars = splitChars(hintText);
+        hintChars.forEach(c => c.setAttribute('aria-hidden', 'true'));
+      }
     }
   }
 
-  // --- mapeamento: progresso do scroll dentro do hero ---
-  // 0 = hero totalmente visivel; 1 = hero sai da tela por completo
-  // a scroll-hint usa so os primeiros 40% desse intervalo
-  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  // suavizacao (smoothstep): entrada e saida mais delicadas
+  const ease = (t) => t * t * (3 - 2 * t);
 
-  // progresso global 0..1 baseado em quanto o topo do hero subiu
-  function scrollProgress() {
-    const r = hero.getBoundingClientRect();
-    const total = r.height || 1;
-    // quanto da altura do hero ja passou do topo da viewport
-    return clamp(-r.top / total, 0, 1);
+  // --- sumico rapido, contado em pixels de rolagem (nao no hero todo):
+  // os dados da aba somem logo no inicio da rolagem, na mesma janela em
+  // que o logo termina de encolher, para o logo pequeno ficar em destaque.
+  // A primeira letra comeca imediatamente; a ultima termina em FADE_RANGE.
+  const FADE_RANGE    = 150;  // largura total da onda de dissolver (px)
+  const SPREAD        = 0.52; // atraso entre a primeira e a ultima letra
+  const WIDTH         = 0.48; // largura da janela de fade de cada letra
+  const HINT_RANGE    = 90;   // scroll-hint: ainda mais rapida
+  const CAPTION_RANGE = 120;  // caption sai junto com a onda
+  const CTA_RANGE     = 140;  // CTA um pouco depois da caption
+
+  // cada letra tem sua propria janela de saida, distribuida pelo texto:
+  // efeito de dissolver em onda, da esquerda pra direita
+  function charOpacity(u, p) {
+    return 1 - ease(clamp((p - u * SPREAD) / WIDTH, 0, 1));
   }
-
-  // cada letra some num ponto proprio; letterP = posicao da letra (0..1)
-  // fade = largura da faixa de saida de cada letra
-  function letterOpacity(letterP, fade, start, end, prog) {
-    // ponto em que a letra termina de sumir, distribuido em [start,end]
-    // (a primeira letra vai de start -> start+fade; a ultima, end-fade -> end)
-    const t = start + (end - start - fade) * letterP;
-    return clamp((t + fade - prog) / fade, 0, 1);
-  }
-
-  const FADE = 0.22;        // largura da janela de fade de cada letra (fração do progresso)
-  const HINT_END = 0.5;     // scroll-hint: ja sumiu na metade do percurso
 
   function paint() {
-    const p = scrollProgress();
+    // --- logo: encolhe de forma linear e ligada ao scroll (estilo polsia) ---
+    // k = 0 no topo (tamanho do hero), k = 1 apos LOGO_RANGE pixels (tam. pequeno)
+    const k = clamp(window.scrollY / LOGO_RANGE, 0, 1);
+    if (logo) logo.style.height = (LOGO_HERO + (LOGO_SMALL - LOGO_HERO) * k).toFixed(1) + 'px';
 
-    // h1: letras somem ao longo de todo o percurso (0 -> 1)
+    if (reduce.matches) return; // usuario sem animacao: texto fica estatico
+
+    // progresso normalizado por faixa (quanto a rolagem andou, em px)
+    const q  = clamp(window.scrollY / FADE_RANGE, 0, 1);
+    const qh = clamp(window.scrollY / HINT_RANGE, 0, 1);
+
+    // h1: letras se dissipam em onda, com uma leve subida
     const n = titleChars.length;
-    titleChars.forEach((c, i) => {
-      c.style.opacity = letterOpacity(i / n, FADE, 0, 1, p);
+    if (n) titleChars.forEach((c, i) => {
+      const o = charOpacity(n > 1 ? i / (n - 1) : 0, q);
+      c.style.opacity = o.toFixed(3);
+      c.style.transform = 'translateY(' + (-6 * (1 - o)).toFixed(2) + 'px)';
     });
 
-    // scroll-hint: muito mais rapido — completa na metade do tempo
+    // scroll-hint: some primeiro, texto e seta juntos
     const m = hintChars.length;
     if (m) hintChars.forEach((c, i) => {
-      c.style.opacity = letterOpacity(i / m, FADE * 0.55, 0, HINT_END, p);
+      c.style.opacity = charOpacity(m > 1 ? i / (m - 1) : 0, qh).toFixed(3);
     });
+    if (hintArrow) hintArrow.style.opacity = (1 - ease(qh)).toFixed(3);
 
-    // apoios: caption e CTA acompanham o ritmo do titulo
-    if (caption) caption.style.opacity = clamp((0.45 - p) / FADE, 0, 1);
-    if (cta)     cta.style.opacity     = clamp((0.6 - p) / FADE, 0, 1);
+    // apoios: caption e CTA acompanham a saida do titulo
+    if (caption) caption.style.opacity = (1 - ease(clamp(window.scrollY / CAPTION_RANGE, 0, 1))).toFixed(3);
+    if (cta)     cta.style.opacity     = (1 - ease(clamp(window.scrollY / CTA_RANGE, 0, 1))).toFixed(3);
   }
 
   let raf = 0;
@@ -419,7 +445,7 @@ body { margin: 0; background: var(--hurma-paper); }
   }
 
   addEventListener('scroll', onScroll, { passive: true });
-  addEventListener('resize', onScroll);
+  addEventListener('resize', () => { readVars(); onScroll(); });
   document.fonts && document.fonts.ready.then(onScroll);
   onScroll();
 })();
