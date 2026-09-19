@@ -114,7 +114,6 @@ body { margin: 0; background: var(--hurma-paper); }
 .footer-links { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; font-size: 11px; letter-spacing: .05em; }
 .footer-links a { color: var(--hurma-ink); text-decoration: underline; text-underline-offset: 3px; }
 .footer-links a:hover { color: var(--hurma-blue); }
-.footer-support { margin-left: auto; }
 @media (prefers-reduced-motion: reduce) { .char { display: inline !important; } }
 .scroll-hint .hint-arrow { display: block; font-family: var(--hurma-mono); font-size: 14px; margin-top: 6px; animation: drift-down 2.5s ease-in-out infinite; }
 .desk-scene { height: calc(100svh - var(--terminal-height) - var(--header-height)); min-height: 720px; }
@@ -188,7 +187,8 @@ body { margin: 0; background: var(--hurma-paper); }
   .closing-scene { min-height: 720px; }
 }
 @media (max-width: 540px) {
-  :root { --header-height: 44px; --logo-h-hero: 62px; --logo-h-small: 28px; --logo-pad: 14px; }
+  :root { --header-height: 44px; --terminal-height: 70px; --logo-h-hero: 62px; --logo-h-small: 28px; --logo-pad: 14px; }
+  .t-desktop-only { display: none; }
   .announcement { padding: 0 14px; text-align: center; line-height: 1.3; }
   .announcement { font-size: 8px; letter-spacing: .02em; gap: 7px; }
   .status-dot { width: 5px; height: 5px; }
@@ -220,7 +220,6 @@ body { margin: 0; background: var(--hurma-paper); }
   .legal-box { padding: 22px 18px; max-height: 85vh; }
   .legal-head h2 { font-size: 19px; }
   .legal-body { font-size: 11px; }
-  .footer-support { margin-left: 0; flex-basis: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -236,7 +235,7 @@ body { margin: 0; background: var(--hurma-paper); }
           <div class="t-prompts" aria-hidden="true">
             <div class="t-line">&gt;</div>
             <div class="t-line">&gt;</div>
-            <div class="t-line">&gt;</div>
+            <div class="t-line t-desktop-only">&gt;</div>
           </div>
           <div class="t-line t-welcome">&gt; Bem-vindo a Hurma<span class="t-cursor" aria-hidden="true">_</span></div>
         </div>
@@ -314,7 +313,6 @@ body { margin: 0; background: var(--hurma-paper); }
       <a href="#inicio">VOLTAR AO INÍCIO</a>
       <button type="button" class="legal-open" data-legal="legal-privacidade">POLÍTICA DE PRIVACIDADE</button>
       <button type="button" class="legal-open" data-legal="legal-cookies">COOKIES</button>
-      <span class="footer-support">SUPORTE: <a href="mailto:contato@assistenterh.com.br">CONTATO@ASSISTENTERH.COM.BR</a></span>
     </nav>
   </footer>
 
