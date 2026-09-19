@@ -123,6 +123,25 @@ body { margin: 0; background: var(--hurma-paper); }
 .hurma-site h2 { font-family: var(--hurma-serif); font-size: 60px; font-weight: 400; line-height: 1.05; letter-spacing: -.045em; }
 .desk-copy h2 { font-size: clamp(36px, 3.7vw, 60px); margin-bottom: 10px; }
 .desk-copy p { font-family: var(--hurma-serif); font-size: 26px; line-height: 1.4; }
+
+/* botoes de politica no rodape */
+.footer-links button.legal-open { font: inherit; letter-spacing: inherit; color: var(--hurma-ink); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.footer-links button.legal-open:hover { color: var(--hurma-blue); }
+
+/* caixas modais (politica de privacidade / cookies) */
+.legal-modal { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgb(32 33 31 / .55); }
+.legal-modal[hidden] { display: none; }
+.legal-box { width: 100%; max-width: 620px; max-height: min(80vh, 620px); overflow-y: auto; background: var(--hurma-paper); color: var(--hurma-ink); border: 1px solid var(--hurma-ink); box-shadow: 12px 12px 0 rgb(32 33 31 / .18); padding: 30px 32px; }
+.legal-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--hurma-ink); padding-bottom: 14px; margin-bottom: 18px; }
+.legal-head h2 { font-family: var(--hurma-display); font-size: 24px; font-weight: 400; letter-spacing: -.02em; margin: 0; }
+.legal-close { flex: none; font-family: var(--hurma-mono); font-size: 11px; letter-spacing: .05em; line-height: 1; color: var(--hurma-ink); background: none; border: 1px solid var(--hurma-ink); padding: 7px 12px; cursor: pointer; }
+.legal-close:hover { background: var(--hurma-ink); color: var(--hurma-paper); }
+.legal-body { font-family: var(--hurma-mono); font-size: 12px; line-height: 1.7; letter-spacing: .01em; }
+.legal-body h3 { font-family: var(--hurma-display); font-size: 15px; font-weight: 700; margin: 18px 0 6px; letter-spacing: 0; }
+.legal-body p { margin: 0 0 10px; }
+.legal-body ul { margin: 0 0 10px; padding-left: 18px; }
+.legal-body li { margin-bottom: 4px; }
+.legal-atualizado { color: rgb(32 33 31 / .55); margin-bottom: 14px !important; }
 .scene-bottom { position: absolute; bottom: 28px; left: 0; right: 0; display: flex; justify-content: center; }
 .team-scene { overflow: hidden; padding-top: calc(var(--logo-pad) + var(--logo-h-small)); padding-bottom: 48px; background: var(--hurma-paper); }
 .team-copy { width: 550px; max-width: calc(100% - 48px); margin: 0 auto; position: relative; z-index: 1; }
@@ -197,6 +216,10 @@ body { margin: 0; background: var(--hurma-paper); }
   .closing-scene { min-height: 680px; padding: 100px 20px; }
   .hurma-footer { padding-inline: 18px; }
   .footer-links { gap: 14px 18px; font-size: 9px; }
+  .legal-modal { padding: 12px; }
+  .legal-box { padding: 22px 18px; max-height: 85vh; }
+  .legal-head h2 { font-size: 19px; }
+  .legal-body { font-size: 11px; }
   .footer-support { margin-left: 0; flex-basis: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -289,9 +312,58 @@ body { margin: 0; background: var(--hurma-paper); }
     <nav class="footer-links" aria-label="Rodapé">
       <span class="footer-copy">© 2026 HURMA</span>
       <a href="#inicio">VOLTAR AO INÍCIO</a>
+      <button type="button" class="legal-open" data-legal="legal-privacidade">POLÍTICA DE PRIVACIDADE</button>
+      <button type="button" class="legal-open" data-legal="legal-cookies">COOKIES</button>
       <span class="footer-support">SUPORTE: <a href="mailto:contato@assistenterh.com.br">CONTATO@ASSISTENTERH.COM.BR</a></span>
     </nav>
   </footer>
+
+  <div class="legal-modal" id="legal-privacidade" role="dialog" aria-modal="true" aria-labelledby="legal-privacidade-titulo" hidden>
+    <div class="legal-box">
+      <div class="legal-head">
+        <h2 id="legal-privacidade-titulo">Política de Privacidade</h2>
+        <button type="button" class="legal-close" aria-label="Fechar política de privacidade">FECHAR</button>
+      </div>
+      <div class="legal-body">
+        <p class="legal-atualizado">Última atualização: 18 de setembro de 2026</p>
+        <p>A Hurma, produto da Assistente de RH, respeita a sua privacidade e trata os seus dados pessoais em conformidade com a Lei nº 13.709/2018 (LGPD).</p>
+        <h3>1. Dados que coletamos</h3>
+        <ul>
+          <li>Nome, e-mail, empresa e cargo, informados por você ao entrar em contato ou solicitar acesso à plataforma.</li>
+          <li>Dados de navegação, como páginas visitadas e dispositivo utilizado, coletados por meio de cookies.</li>
+        </ul>
+        <h3>2. Como usamos os seus dados</h3>
+        <p>Para responder às suas solicitações, prestar e aprimorar o serviço, prevenir fraudes e enviar comunicações — estas últimas somente com o seu consentimento.</p>
+        <h3>3. Compartilhamento</h3>
+        <p>Não vendemos os seus dados. Compartilhamos apenas com prestadores de serviços essenciais ou quando houver obrigação legal.</p>
+        <h3>4. Os seus direitos</h3>
+        <p>Você pode acessar, corrigir, excluir ou portar os seus dados e revogar consentimentos a qualquer momento.</p>
+        <h3>5. Retenção</h3>
+        <p>Mantemos os seus dados apenas pelo tempo necessário às finalidades aqui descritas.</p>
+        <p>Contato: <a href="mailto:contato@assistenterh.com.br">contato@assistenterh.com.br</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="legal-cookies" role="dialog" aria-modal="true" aria-labelledby="legal-cookies-titulo" hidden>
+    <div class="legal-box">
+      <div class="legal-head">
+        <h2 id="legal-cookies-titulo">Política de Cookies</h2>
+        <button type="button" class="legal-close" aria-label="Fechar política de cookies">FECHAR</button>
+      </div>
+      <div class="legal-body">
+        <p class="legal-atualizado">Última atualização: 18 de setembro de 2026</p>
+        <p>Cookies são pequenos arquivos que o seu navegador armazena ao visitar este site, permitindo reconhecer o seu dispositivo e a sua navegação.</p>
+        <h3>1. Cookies essenciais</h3>
+        <p>Necessários ao funcionamento do site. Não podem ser desativados.</p>
+        <h3>2. Cookies de desempenho</h3>
+        <p>Coletam informações anônimas sobre como você utiliza o site, ajudando-nos a melhorá-lo continuamente.</p>
+        <h3>3. Gerenciamento</h3>
+        <p>Você pode limpar ou bloquear cookies nas configurações do seu navegador; nesse caso, algumas funcionalidades podem deixar de funcionar.</p>
+        <p>Contato: <a href="mailto:contato@assistenterh.com.br">contato@assistenterh.com.br</a></p>
+      </div>
+    </div>
+  </div>
 </div><script>(() => {
   const site = document.querySelector('.hurma-site');
   if (!site || site.dataset.ready) return;
@@ -510,4 +582,33 @@ body { margin: 0; background: var(--hurma-paper); }
   document.fonts && document.fonts.ready.then(onScroll);
   onScroll();
 })();
-</script></body></html>
+</script>
+<script>(() => {
+  // caixas de politica: abrem so ao clicar nos botoes do rodape
+  let aberto = null;
+  function abrir(modal) {
+    if (!modal || aberto === modal) return;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    aberto = modal;
+    const x = modal.querySelector('.legal-close');
+    if (x) x.focus();
+  }
+  function fechar() {
+    if (!aberto) return;
+    aberto.hidden = true;
+    document.body.style.overflow = '';
+    const botao = document.querySelector('.legal-open[data-legal="' + aberto.id + '"]');
+    aberto = null;
+    if (botao) botao.focus();
+  }
+  document.querySelectorAll('.legal-open').forEach(btn => {
+    btn.addEventListener('click', () => abrir(document.getElementById(btn.dataset.legal)));
+  });
+  document.querySelectorAll('.legal-modal').forEach(m => {
+    m.addEventListener('click', e => { if (e.target === m) fechar(); }); // clicar fora fecha
+    const x = m.querySelector('.legal-close');
+    if (x) x.addEventListener('click', fechar);
+  });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && aberto) fechar(); }); // ESC fecha
+})();</body></html>
