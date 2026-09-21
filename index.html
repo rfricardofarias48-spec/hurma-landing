@@ -122,7 +122,7 @@ body { margin: 0; background: var(--hurma-paper); }
 .team-scene { overflow: hidden; padding-top: calc(var(--logo-pad) + var(--logo-h-small)); padding-bottom: 48px; background: var(--hurma-paper); }
 .team-copy { width: 550px; max-width: calc(100% - 48px); margin: 0 auto; position: relative; z-index: 1; }
 .team-copy h2 { font-size: 48px; margin-bottom: 20px; }
-.task-list p, .team-signoff { font-family: var(--hurma-serif); font-size: 27px; line-height: 1.45; letter-spacing: -.02em; }
+.task-list p, .team-signoff { font-family: var(--hurma-serif); font-size: clamp(14.5px, 4.7vw, 27px); line-height: 1.45; letter-spacing: -.02em; white-space: nowrap; }
 .task-list p { color: var(--hurma-muted); transition: color .2s, transform .2s; }
 .task-list p:hover { color: var(--hurma-blue); transform: translateX(7px); }
 .team-signoff { margin-top: 16px !important; }
@@ -185,7 +185,6 @@ body { margin: 0; background: var(--hurma-paper); }
   .team-scene { padding-top: calc(var(--logo-pad) + var(--logo-h-small)); }
   .team-copy { max-width: calc(100% - 48px); }
   .team-copy h2 { font-size: 37px; }
-  .task-list p, .team-signoff { font-size: 23px; line-height: 1.5; }
   .integrations-content { gap: 18px; }
   .hurma-site .integrations-title { font-size: 19px; }
   .ltrack { gap: 40px; }
